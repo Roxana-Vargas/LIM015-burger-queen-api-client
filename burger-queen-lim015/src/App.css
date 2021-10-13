@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300&display=swap');
+
 /*.App {
   text-align: center;
 }*/
@@ -7,6 +9,11 @@
   pointer-events: none;
 }
 
+/* Navigation */
+nav {
+  margin-top: 30px;
+
+}
 nav ul {
   display: flex;
   justify-content: flex-end;
@@ -15,7 +22,7 @@ nav li {
   list-style: none;
 }
 nav li a {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 35px;
   letter-spacing: 0em;
@@ -33,4 +40,63 @@ div p {
 
 a:hover{
   border-bottom: 3px solid  #F3C13F;
+}
+
+/* Logo */
+.logo {
+  position: absolute;
+  width: 200px;
+  height: 140px;
+  left: 40px;
+  top: 10px;
+}
+
+/* login */
+.container-welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  background: #FEFDFF;
+  height: 450px;
+  width: 500px;
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  
+}
+
+.welcome p {
+  margin-bottom: 60px;
+  font-size: 30px;
+  line-height: 59px;
+}
+
+.input-login {
+  border: none;
+  border-bottom:1px solid black;
+  width: 100%;
+  margin-bottom:60px;
+  outline: none;
+}
+.input-login::placeholder {
+  font-family: 'Raleway', sans-serif;
+  font-size: 15px;
+}
+.btn-login {
+  background-color: #F3C13F;
+  border-radius: 10px;
+  color: white;
+  border:none;
+  width: 50%;
+  height: 35%;
+  margin-left: 25%;
+  margin-right: 25%;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
 }

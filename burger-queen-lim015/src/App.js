@@ -12,13 +12,17 @@ import Products from "./components/Products";
 import Profile from "./components/Profile";
 import StatusOfOrder from "./components/Status-orders";
 import Users from "./components/Users";
+import logo from './images/logo-bq.png';
+
 
 
 function App() {
   return (
     <Router>
       <div className="App">
-        
+        <header className='header'>
+        <img src={logo} className='logo' alt='logo'/>
+        </header>
         <nav>
           <ul>
             <li>
