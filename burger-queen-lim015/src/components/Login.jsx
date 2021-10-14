@@ -24,6 +24,7 @@ const Login = () => {
         const url = 'https://bq-lim015.herokuapp.com/auth';
         axios.post(url, datos)
         .then((response) => {
+            console.log(response.data);
             const token = response.data.token;
             if (response.status === 200) {
                 localStorage.setItem('token', token)
@@ -32,16 +33,16 @@ const Login = () => {
         }).catch((error) => {
             let errorMessage = '';
             if (error.response.status === 400) {
-                errorMessage = 'Debes llenar todos los campos'
+                errorMessage = 'You must fill all the fields'
             }
             if (error.response.status === 401) {
-                errorMessage = 'La contraseña es incorrecta'
+                errorMessage = 'Password is incorrect'
             }
             if (error.response.status === 404) {
-                errorMessage = 'El usuario ingresado no existe'
+                errorMessage = "User doesn't exist"
             }
             toast.error(`${errorMessage}`, {
-                position: "bottom-center",
+                position: 'bottom-center',
                 autoClose: 10000,
                 hideProgressBar: false,
                 closeOnClick: true,
