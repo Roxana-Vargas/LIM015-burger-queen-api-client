@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { faUserEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 const Users = () => {
 
@@ -29,11 +31,40 @@ const Users = () => {
         const config = {
             headers: { token: token }
         };
-        axios.post(url, datosForm, config).then((response) => {
-            console.log(response);
+        axios.post(url, datosForm, config).then(() => {
+            toast.success('User created!', {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         })
         .catch((error) => {
-            console.log(error);
+            let errorMessage = '';
+            if (error.response.status === 400) {
+                errorMessage = 'You must fill all the fields'
+            }
+            if (error.response.data.message === 'Email format is invalid') {
+                errorMessage = 'The email format is invalid'
+            }
+            if (error.response.data.message === 'user already exists') {
+                errorMessage = 'User already exists'
+            }
+            if (error.response.data.message === 'Password format is invalid') {
+                errorMessage = 'The password format is invalid'
+            }
+            toast.error(`${errorMessage}`, {
+                position: 'bottom-center',
+                autoClose: 8000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         } )
     }
     useEffect(() => {
@@ -72,6 +103,7 @@ const Users = () => {
                         <input  type='submit' value='Create' className='btn-createUser'></input>
                     </form>
                 </div>
+                <ToastContainer />
                 <div className='containerTable'>
                     <table className='table'>
                         <thead>
