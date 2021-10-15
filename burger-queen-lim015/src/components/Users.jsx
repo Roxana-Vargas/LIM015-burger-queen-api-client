@@ -10,7 +10,7 @@ const Users = () => {
 
     const [datos, setDatos] = useState([]);
     
-    /*Create a new user*/
+    /* ------------------------------------- CREATE A NEW USER -----------------------------------------------*/
     const [datosForm, setDatosForm] = useState({
         email: '',
         password: '',
@@ -73,7 +73,7 @@ const Users = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     })
 
-    /* Get all users */
+    /* --------------------------------------------------- GET ALL USERS ------------------------------------------------- */
     const getUsers = () => {
         const url = 'https://bq-lim015.herokuapp.com/users';
         const token = localStorage.getItem('token')
@@ -89,7 +89,8 @@ const Users = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
-    /*update user*/
+    /*---------------------------------------------------------- UPDATE USER --------------------------------------------------------*/
+
     const [isOpenModal, setIsOpenModal] = useState(false)
 
     const openModal = () => {
@@ -99,9 +100,73 @@ const Users = () => {
     const closeModal = () => {
         setIsOpenModal(false);
     }
-    
 
-    /*interfaz*/
+    const selectUser = (user) => {
+        setDatosForm({
+        email: user.email,
+        password: user.password,
+        /*roles: user.roles*/
+        })
+        
+    }
+
+    const [datosUpdate, setDatosUpdate] = useState({
+        email: '',
+        password: '',
+        roles: ''
+    })
+
+    const handleInputChangeUpdate = (event) => {
+        setDatosUpdate({
+            ...datosUpdate,
+            [event.target.name] : event.target.value
+        })
+        console.log(datosUpdate);
+    }
+
+    const handleSubmitUpdate = (e) => {
+        e.preventDefault();
+        const url = `https://bq-lim015.herokuapp.com/users/${datosForm.email}`;
+        const token = localStorage.getItem('token')
+        console.log(token);
+        const config = {
+            headers: { token: token }
+        };
+        axios.put(url, datosUpdate, config).then((response) => {
+            console.log(response);
+            closeModal();
+            toast.success('User updated!', {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        })
+        .catch((error) => {
+            console.log(error);
+            let errorMessage = '';
+            if (error.response.status === 400) {
+                errorMessage = "You didn't enter information to update"
+            }
+            closeModal();
+            toast.error(`${errorMessage}`, {
+                position: 'bottom-center',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+        } )
+    }
+
+    /* -------------------------------------------------------------- INTERFAZ ---------------------------------------------------- */
+    
     return (
         <section className='container-users'>
             <div className='createNewUser'><p>Create a new user</p></div>
@@ -140,7 +205,7 @@ const Users = () => {
                                 <tr key={i}>
                                 <td>{roles}</td>
                                 <td>{user.email}</td>
-                                <td><button onClick={openModal} className='btn-update'><FontAwesomeIcon icon={faUserEdit} /></button></td>
+                                <td><button onClick={() => { openModal(); selectUser(user)}} className='btn-update'><FontAwesomeIcon icon={faUserEdit} /></button></td>
                                 <td><button className='btn-delete'><FontAwesomeIcon icon={faTrash} /></button></td>
                                 </tr>
                             )
@@ -154,14 +219,14 @@ const Users = () => {
                     <div className='modalContenido'>
                         <img src={logo} className='logoModal' alt='logo'/>
                         <p>Update user</p> 
-                        <form>
-                            <input type='text' placeholder='Email Adress'  name='emailUpdate' className='input-updateUser' autoComplete="username" ></input>
-                            <input type='password' placeholder='Password' name='passwordUpdate' className='input-updateUser' autoComplete="current-password"></input>
-                            <select onChange={handleInputChange} name="roles" className='select-updateUser'>
-                            <option>user</option>
-                            <option>admin</option>
+                        <form onSubmit={(evt) => handleSubmitUpdate(evt)}>
+                            <input onChange={handleInputChangeUpdate} defaultValue={datosForm.email} type='text' placeholder='Email Adress'  name='email' className='input-updateUser' autoComplete="username" ></input>
+                            <input onChange={handleInputChangeUpdate} defaultValue={datosForm.password} type='password' placeholder='Password' name='password' className='input-updateUser' autoComplete="current-password"></input>
+                            <select onChange={handleInputChangeUpdate} name="roles" className='select-updateUser'>
+                            <option value='615a8dbbe99308986396e976'>user</option>
+                            <option value='615a8dbbe99308986396e977'>admin</option>
                         </select>
-                            <input  type='submit' value='Update' className='btn-updateUser'></input>  
+                            <input type='submit' value='Update' className='btn-updateUser'></input>  
                             <button className='btn-updateCancel' onClick={closeModal}>Close</button>
                     </form>  
                     </div>  
