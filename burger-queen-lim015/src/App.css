@@ -208,3 +208,81 @@ tr:nth-child(even) {
   background-color: transparent;
   font-size: 20px;
 }
+
+
+/*modal*/
+
+.modal {
+  background-color: rgba(0,0,0,.6);
+  position: fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContenido {
+  background-color: white;
+  position: relative;
+  width:450px;
+  height: 450px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoModal {
+  width: 100px;
+}
+
+.input-updateUser{
+  border: none;
+  border-bottom:1px solid black;
+  width: 80%;
+  margin-left:10%;
+  margin-bottom:30px;
+  outline: none;
+}
+.select-updateUser {
+  border: none;
+  width: 80%;
+  margin-left:10%;
+  margin-bottom:30px;
+  outline: none;
+  background-color: #eeece3;
+  border-radius: 5px;
+  padding: 10px;
+  font-family: 'Raleway', sans-serif;
+}
+.btn-updateUser {
+  margin-top: 20px;
+  background-color: #F3C13F;
+  border-radius: 8px;
+  color: white;
+  border:none;
+  width: 35%;
+  height: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+}
+.btn-updateCancel {
+  margin-top: 20px;
+  background-color: #DB3535;
+  border-radius: 8px;
+  color: white;
+  border:none;
+  width: 35%;
+  height: 20%;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+}

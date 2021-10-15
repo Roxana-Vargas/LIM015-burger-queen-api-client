@@ -4,6 +4,7 @@ import { faUserEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import logo from '../images/logo-bq.png';
 
 const Users = () => {
 
@@ -88,6 +89,18 @@ const Users = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
+    /*update user*/
+    const [isOpenModal, setIsOpenModal] = useState(false)
+
+    const openModal = () => {
+        setIsOpenModal(true);
+    }
+
+    const closeModal = () => {
+        setIsOpenModal(false);
+    }
+    
+
     /*interfaz*/
     return (
         <section className='container-users'>
@@ -104,6 +117,7 @@ const Users = () => {
                     </form>
                 </div>
                 <ToastContainer />
+
                 <div className='containerTable'>
                     <table className='table'>
                         <thead>
@@ -126,15 +140,32 @@ const Users = () => {
                                 <tr key={i}>
                                 <td>{roles}</td>
                                 <td>{user.email}</td>
-                                <td><button className='btn-update'><FontAwesomeIcon icon={faUserEdit} /></button></td>
+                                <td><button onClick={openModal} className='btn-update'><FontAwesomeIcon icon={faUserEdit} /></button></td>
                                 <td><button className='btn-delete'><FontAwesomeIcon icon={faTrash} /></button></td>
                                 </tr>
                             )
                         })}
-                            
                             </tbody>
                     </table>
                 </div>
+
+                {isOpenModal &&  
+                <div className='modal'>
+                    <div className='modalContenido'>
+                        <img src={logo} className='logoModal' alt='logo'/>
+                        <p>Update user</p> 
+                        <form>
+                            <input type='text' placeholder='Email Adress'  name='emailUpdate' className='input-updateUser' autoComplete="username" ></input>
+                            <input type='password' placeholder='Password' name='passwordUpdate' className='input-updateUser' autoComplete="current-password"></input>
+                            <select onChange={handleInputChange} name="roles" className='select-updateUser'>
+                            <option>user</option>
+                            <option>admin</option>
+                        </select>
+                            <input  type='submit' value='Update' className='btn-updateUser'></input>  
+                            <button className='btn-updateCancel' onClick={closeModal}>Close</button>
+                    </form>  
+                    </div>  
+                </div>} 
         </section>
     )
 }
