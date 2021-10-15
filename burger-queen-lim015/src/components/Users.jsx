@@ -107,7 +107,6 @@ const Users = () => {
         password: user.password,
         /*roles: user.roles*/
         })
-        
     }
 
     const [datosUpdate, setDatosUpdate] = useState({
@@ -165,8 +164,44 @@ const Users = () => {
         } )
     }
 
-    /* -------------------------------------------------------------- INTERFAZ ---------------------------------------------------- */
+    /* ------------------------------------------------------------- DELETE USER ---------------------------------------------------- */
+    const [isOpenModalDelete, setIsOpenModalDelete] = useState(false)
+
+    const openModalDelete = () => {
+        setIsOpenModalDelete(true);
+    }
+
+    const closeModalDelete = () => {
+        setIsOpenModalDelete(false);
+    }
     
+    const handleDelete = () => {
+        const url = `https://bq-lim015.herokuapp.com/users/${datosForm.email}`;
+        const token = localStorage.getItem('token')
+        console.log(token);
+        const config = {
+            headers: { token: token }
+        };
+        axios.delete(url, config).then((response) => {
+            console.log(response);
+            closeModalDelete();
+            toast.success('User has been deleted!', {
+                position: "bottom-center",
+                autoClose: 3500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        })
+        .catch((error) => {
+            console.info(error);
+        } )
+    }
+
+    /* -------------------------------------------------------------- INTERFAZ ---------------------------------------------------- */
+
     return (
         <section className='container-users'>
             <div className='createNewUser'><p>Create a new user</p></div>
@@ -206,14 +241,14 @@ const Users = () => {
                                 <td>{roles}</td>
                                 <td>{user.email}</td>
                                 <td><button onClick={() => { openModal(); selectUser(user)}} className='btn-update'><FontAwesomeIcon icon={faUserEdit} /></button></td>
-                                <td><button className='btn-delete'><FontAwesomeIcon icon={faTrash} /></button></td>
+                                <td><button onClick={() => { openModalDelete(); selectUser(user)}}  className='btn-delete'><FontAwesomeIcon icon={faTrash} /></button></td>
                                 </tr>
                             )
                         })}
                             </tbody>
                     </table>
                 </div>
-
+                
                 {isOpenModal &&  
                 <div className='modal'>
                     <div className='modalContenido'>
@@ -229,6 +264,17 @@ const Users = () => {
                             <input type='submit' value='Update' className='btn-updateUser'></input>  
                             <button className='btn-updateCancel' onClick={closeModal}>Close</button>
                     </form>  
+                    </div>  
+                </div>} 
+                {isOpenModalDelete &&  
+                <div className='modalDelete'>
+                    <div className='modalContentDelete'>
+                        <img src={logo} className='logoModal' alt='logo'/>
+                        <p>Are you sure you want to delete this user?</p> 
+                        <div className='btns-delete'>
+                            <button onClick={handleDelete}  className='btn-deleteUser'>Delete</button>  
+                            <button className='btn-deleteCancel' onClick={closeModalDelete}>Close</button>
+                        </div> 
                     </div>  
                 </div>} 
         </section>
