@@ -258,12 +258,12 @@ const Users = () => {
                             <input onChange={handleInputChangeUpdate} defaultValue={datosForm.email} type='text' placeholder='Email Adress'  name='email' className='input-updateUser' autoComplete="username" ></input>
                             <input onChange={handleInputChangeUpdate} defaultValue={datosForm.password} type='password' placeholder='Password' name='password' className='input-updateUser' autoComplete="current-password"></input>
                             <select onChange={handleInputChangeUpdate} name="roles" className='select-updateUser'>
-                            <option value='615a8dbbe99308986396e976'>user</option>
-                            <option value='615a8dbbe99308986396e977'>admin</option>
-                        </select>
+                                <option value='615a8dbbe99308986396e976'>user</option>
+                                <option value='615a8dbbe99308986396e977'>admin</option>
+                            </select>
                             <input type='submit' value='Update' className='btn-updateUser'></input>  
                             <button className='btn-updateCancel' onClick={closeModal}>Close</button>
-                    </form>  
+                        </form>  
                     </div>  
                 </div>} 
                 {isOpenModalDelete &&  

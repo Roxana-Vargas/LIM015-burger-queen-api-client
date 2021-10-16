@@ -344,3 +344,114 @@ tr:nth-child(even) {
   font-family: 'Raleway', sans-serif;
   cursor: pointer;
 }
+
+
+/*create product*/
+
+.createNewProduct{
+  margin-left: 60px;
+  margin-top: 30px;
+}
+
+.btnCreate{
+  background-color: #F3C13F;
+  border-radius: 7px;
+  color: white;
+  border:none;
+  width: 150px;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+}
+
+/*modal create product*/
+
+.modalCreateProduct{
+  background-color: rgba(0,0,0,.6);
+  position: fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContentProduct{
+  background-color: white;
+  position: relative;
+  width:450px;
+  height: 450px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputCreateProduct{
+  border: none;
+  border-bottom:1px solid black;
+  width: 80%;
+  margin-left:10%;
+  margin-bottom:30px;
+  outline: none;
+  font-family: 'Raleway', sans-serif;
+}
+.selectCreateProduct {
+  border: none;
+  width: 80%;
+  margin-left:10%;
+  margin-bottom:30px;
+  outline: none;
+  background-color: #eeece3;
+  border-radius: 5px;
+  padding: 10px;
+  font-family: 'Raleway', sans-serif;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }
+
+.inputFile{
+  margin-left: 45px;
+  margin-bottom: 20px;
+}
+
+.btnCreateProduct{
+  margin-top: 5px;
+  margin-bottom: 10px;
+  background-color: #F3C13F;
+  border-radius: 8px;
+  color: white;
+  border:none;
+  width: 35%;
+  height: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+}
+
+.btnCreateCancel{
+  margin-top: 5px;
+  background-color: #DB3535;
+  border-radius: 8px;
+  color: white;
+  border:none;
+  width: 35%;
+  height: 20%;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
