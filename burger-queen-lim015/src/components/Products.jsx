@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ModalCreateProduct from './ModalCreateProduct';
 import ModalUpdateProduct from './ModalUpdateProduct';
+import ModalDeleteProduct from './ModalDeleteProduct';
 import axios from 'axios';
 import { faPenSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -174,6 +175,44 @@ const Products = () => {
         })
     }
 
+    /* ------------------------------------- DELETE A PRODUCT -----------------------------------------------*/
+    const [isOpenModalDelete, setIsOpenModalDelete] = useState(false)
+
+    const openModalDelete = () => {
+        setIsOpenModalDelete(true);
+    }
+
+    const closeModalDelete = () => {
+        setIsOpenModalDelete(false);
+    }
+    
+    const handleDelete = () => {
+        console.log(dataNewProduct.id);
+        const url = `https://bq-lim015.herokuapp.com/products/${dataNewProduct.id}`;
+        const token = localStorage.getItem('token')
+        const config = {
+            headers: { token: token }
+        };
+        axios.delete(url, config).then((response) => {
+            console.log(response);
+            getProducts();
+            closeModalDelete();
+            toast.success('The product has been deleted!', {
+                position: "bottom-center",
+                autoClose: 3500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        })
+        .catch((error) => {
+            console.info(error);
+        } )
+    }
+
+
     return (
         <section>
             <div className='createNewProduct'>
@@ -201,8 +240,8 @@ const Products = () => {
                                 <td>{product.price}</td>
                                 <td>{product.type}</td>
                                 <td><button className='btn-update' onClick={() => { openModalUpdate(); selectProduct(product)}}><FontAwesomeIcon icon={faPenSquare} /></button></td>
-                                <td><button className='btn-delete'><FontAwesomeIcon icon={faTrash} /></button></td>
-                                </tr>  
+                                <td><button className='btn-delete' onClick={() => { openModalDelete(); selectProduct(product)}}><FontAwesomeIcon icon={faTrash} /></button></td>
+                                </tr>
                             )
                         })}
                     </tbody>
@@ -213,8 +252,9 @@ const Products = () => {
             <ToastContainer />
 
             {isOpenModalUpdate && <ModalUpdateProduct name={dataNewProduct.name} price={dataNewProduct.price} type={dataNewProduct.type} closeModalUpdate={closeModalUpdate} handleInputChangeUpdate={handleInputChangeUpdate} handleSubmitUpdate={handleSubmitUpdate}/>}
-            <ToastContainer />
 
+            {isOpenModalDelete && <ModalDeleteProduct closeModalDelete={closeModalDelete} handleDelete={handleDelete}/>}
+    
         </section>
     )
 }
