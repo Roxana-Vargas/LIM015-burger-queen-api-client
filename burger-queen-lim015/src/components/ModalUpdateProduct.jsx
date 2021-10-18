@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../images/logo-bq.png';
 
-const ModalUpdateProduct = ({ closeModalUpdate, name, price, type, handleInputChangeUpdate, handleSubmitUpdate}) => {
+const ModalUpdateProduct = ({ closeModalUpdate, name, price, image, type, handleInputChangeUpdate, handleSubmitUpdate}) => {
     return (
         <div className='modalCreateProduct'>
             <div className='modalContentProduct'>
@@ -10,7 +10,7 @@ const ModalUpdateProduct = ({ closeModalUpdate, name, price, type, handleInputCh
                     <form onSubmit={(evt) => handleSubmitUpdate(evt)}>
                         <input defaultValue={name} onChange={handleInputChangeUpdate} type='text' placeholder='Name'  name='name' className='inputCreateProduct' autoComplete='name' ></input>
                         <input defaultValue={price} onChange={handleInputChangeUpdate}  type='number' placeholder='Price' name='price' className='inputCreateProduct'></input>
-                        <input  type='file' onChange={handleInputChangeUpdate} name='image' accept='image/png, image/jpeg' className='inputFile'></input>
+                        <input defaultValue={image} onChange={handleInputChangeUpdate} type='text' placeholder='Url'  name='image' className='inputCreateProduct' autoComplete='image' ></input>
                         <select defaultValue={type} onChange={handleInputChangeUpdate} name="type" className='selectCreateProduct'>
                             <option>Desayuno</option>
                             <option>Almuerzo</option>

@@ -46,7 +46,10 @@ const Orders = () => {
                     return (
                         <div className='containerCard'>
                             <div className='card'>
-                                <img src={product.image} alt='product' className='imageProduct'/>
+                                <div className='containerImage'>
+                                    <img src={product.image} alt='product' className='imageProduct'/>   
+                                </div>
+                                
                                 <p className='product'>Product: <span className='infoProduct'> {product.name} </span> </p>
                                 <p className='product'>Price <span className='infoProduct'> {product.price} </span> </p>
                                 <button className='btnAddOrder'>Add to order</button>

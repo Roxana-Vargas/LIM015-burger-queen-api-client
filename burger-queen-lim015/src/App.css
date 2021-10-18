@@ -459,14 +459,12 @@ input[type=number] { -moz-appearance:textfield; }
 
 /*card products*/
 .sectionOrders{
-  background-color: #F3C13F;
   display: flex;
   width: 90%;
   margin: auto;
   height: 650px;
 }
 .divProducts{
-  background-color: aqua;
   width: 50%;
   height: 1200px;
 }
@@ -475,8 +473,7 @@ input[type=number] { -moz-appearance:textfield; }
   width: 50%;
 }
 .divBtnsOrder{
-  margin-top: 30px;
-  background-color: chartreuse;
+  margin-top: 0px;
   display: flex;
   justify-content: center;
 }
@@ -533,15 +530,24 @@ input[type=number] { -moz-appearance:textfield; }
 .containerCard{
   background-color: violet;
   width: 100%;
-  display: flex;
-  justify-content: center;
 }
-
+.containerImage{
+  width: 100%;
+  display: flex;
+}
 .card{
   margin-top: 5%;
   background-color: white;
   width: 40%;
-  height: 300px;
-  margin-left: 5%;
+  height: 320px;
+  margin-left: 7%;
   border-radius: 5px;
+  float: left;
+}
+
+.imageProduct{
+  width: 150px;
+  height: 150px;
+  margin-left: 25%;
+  margin-top: 10px;
 }

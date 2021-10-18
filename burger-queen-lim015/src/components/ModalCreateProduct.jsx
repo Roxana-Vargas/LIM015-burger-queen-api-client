@@ -10,7 +10,7 @@ const ModalCreateProduct = ({ closeModal, handleInputChange, handleSubmitCreate}
                     <form onSubmit={handleSubmitCreate }>
                         <input onChange={handleInputChange} type='text' placeholder='Name'  name='name' className='inputCreateProduct' autoComplete='name' ></input>
                         <input onChange={handleInputChange} type='number' placeholder='Price' name='price' className='inputCreateProduct'></input>
-                        <input onChange={handleInputChange} type='file' name='image' accept='image/png, image/jpeg' className='inputFile'></input>
+                        <input onChange={handleInputChange} type='text' placeholder='Url'  name='image' className='inputCreateProduct' autoComplete='image' ></input>
                         <select onChange={handleInputChange} name="type" className='selectCreateProduct'>
                             <option>Desayuno</option>
                             <option>Almuerzo</option>

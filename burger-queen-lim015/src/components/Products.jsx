@@ -251,7 +251,7 @@ const Products = () => {
             {isOpenModal && <ModalCreateProduct closeModal={closeModal} handleInputChange ={handleInputChange} handleSubmitCreate={handleSubmitCreate} />}
             <ToastContainer />
 
-            {isOpenModalUpdate && <ModalUpdateProduct name={dataNewProduct.name} price={dataNewProduct.price} type={dataNewProduct.type} closeModalUpdate={closeModalUpdate} handleInputChangeUpdate={handleInputChangeUpdate} handleSubmitUpdate={handleSubmitUpdate}/>}
+            {isOpenModalUpdate && <ModalUpdateProduct name={dataNewProduct.name} price={dataNewProduct.price} image={dataNewProduct.image} type={dataNewProduct.type} closeModalUpdate={closeModalUpdate} handleInputChangeUpdate={handleInputChangeUpdate} handleSubmitUpdate={handleSubmitUpdate}/>}
 
             {isOpenModalDelete && <ModalDeleteProduct closeModalDelete={closeModalDelete} handleDelete={handleDelete}/>}
     
