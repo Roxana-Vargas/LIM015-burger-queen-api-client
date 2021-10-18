@@ -13,9 +13,7 @@ const ModalCreateProduct = ({ closeModal, handleInputChange, handleSubmitCreate}
                         <input onChange={handleInputChange} type='file' name='image' accept='image/png, image/jpeg' className='inputFile'></input>
                         <select onChange={handleInputChange} name="type" className='selectCreateProduct'>
                             <option>Desayuno</option>
-                            <option>Hamburguesa</option>
-                            <option>Acompañamiento</option>
-                            <option>Bebida</option>
+                            <option>Almuerzo</option>
                         </select>
                         <input type='submit' value='Create' className='btnCreateProduct'></input>  
                         <button className='btnCreateCancel' onClick={closeModal}>Close</button>

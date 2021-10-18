@@ -456,3 +456,92 @@ input[type=number] { -moz-appearance:textfield; }
   cursor: pointer;
   margin-bottom: 10px;
 }
+
+/*card products*/
+.sectionOrders{
+  background-color: #F3C13F;
+  display: flex;
+  width: 90%;
+  margin: auto;
+  height: 650px;
+}
+.divProducts{
+  background-color: aqua;
+  width: 50%;
+  height: 1200px;
+}
+.divOrderCart{
+  background-color: white;
+  width: 50%;
+}
+.divBtnsOrder{
+  margin-top: 30px;
+  background-color: chartreuse;
+  display: flex;
+  justify-content: center;
+}
+.showBreakfasts{
+  width: 180px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: #F3C13F;
+  font-family: 'Raleway', sans-serif;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.showLunches{
+  width: 180px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: #EB5B30;
+  font-family: 'Raleway', sans-serif;
+  color: white;
+  font-size: 18px;
+  font-weight: bold; 
+}
+
+
+.product{
+  font-weight: bold;
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+.infoProduct{
+  font-weight: lighter;
+}
+
+.btnAddOrder{
+  background-color: #F3C13F;
+  border: none;
+  width: 50%;
+  margin-left: 25%;
+  height: 40px;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.containerCard{
+  background-color: violet;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.card{
+  margin-top: 5%;
+  background-color: white;
+  width: 40%;
+  height: 300px;
+  margin-left: 5%;
+  border-radius: 5px;
+}

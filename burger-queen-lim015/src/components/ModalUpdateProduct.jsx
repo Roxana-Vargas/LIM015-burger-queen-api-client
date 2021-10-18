@@ -13,9 +13,7 @@ const ModalUpdateProduct = ({ closeModalUpdate, name, price, type, handleInputCh
                         <input  type='file' onChange={handleInputChangeUpdate} name='image' accept='image/png, image/jpeg' className='inputFile'></input>
                         <select defaultValue={type} onChange={handleInputChangeUpdate} name="type" className='selectCreateProduct'>
                             <option>Desayuno</option>
-                            <option>Hamburguesa</option>
-                            <option>Acompañamiento</option>
-                            <option>Bebida</option>
+                            <option>Almuerzo</option>
                         </select>
                         <input type='submit' value='Update' className='btnCreateProduct'></input>  
                         <button className='btnCreateCancel' onClick={closeModalUpdate}>Close</button>
