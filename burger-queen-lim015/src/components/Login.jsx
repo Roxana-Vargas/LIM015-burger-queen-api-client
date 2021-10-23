@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+import 'react-toastify/dist/ReactToastify.css';
+import jwt from 'jwt-decode';
 
 const Login = () => {
     const [datos, setDatos] = useState({
@@ -24,8 +25,10 @@ const Login = () => {
         const url = 'https://bq-lim015.herokuapp.com/auth';
         axios.post(url, datos)
         .then((response) => {
-            console.log(response.data);
             const token = response.data.token;
+            const user = jwt(token);
+            const userId = user.id;
+            localStorage.setItem('userId', userId)
             if (response.status === 200) {
                 localStorage.setItem('token', token)
                 history.push('/users')

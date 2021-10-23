@@ -132,7 +132,6 @@ const Users = () => {
             headers: { token: token }
         };
         axios.put(url, datosUpdate, config).then((response) => {
-            console.log(response);
             closeModal();
             toast.success('User updated!', {
                 position: "bottom-center",

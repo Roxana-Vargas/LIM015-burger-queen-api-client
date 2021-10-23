@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+/*import CardToOrder from './CardToOrder';*/
+import { faPlus, faMinus} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 const Orders = () => {
-    
+    /* ------------------------------------- GET ALL PRODUCTS -----------------------------------------------*/
     const [dataProducts, setDataProducts] = useState([]);
 
     const getProducts = () => {
-        const url = 'https://bq-lim015.herokuapp.com/products';
+        const url = 'https://bq-lim015.herokuapp.com/products?limit=15';
         const token = localStorage.getItem('token')
         const config = {
             headers: { token: token }
@@ -14,7 +19,6 @@ const Orders = () => {
         axios.get(url, config).then((response) => {
             setDataProducts(response.data)
         })
-        console.log(dataProducts);
     }
 
     useEffect(() => {
@@ -22,9 +26,10 @@ const Orders = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    /* ------------------------------------- SHOW PRODUCTS BY TYPE -----------------------------------------------*/
+
     const [dataTypeProducts, setDataTypeProducts] = useState([]);
     
-
     const showBreakfasts = () => { 
         const breakfast = dataProducts.filter((product) => product.type ==='Desayuno');
         setDataTypeProducts(breakfast);
@@ -35,6 +40,93 @@ const Orders = () => {
         setDataTypeProducts(lunches);
     }
 
+
+    /* ------------------------- ADD PRODUCTS TO CART ----------------------------------------------*/
+
+    const [productsCart, setProductsCart] = useState([]);
+    
+    const showProductsCart = (product) => {
+        setProductsCart([
+            ...productsCart,
+            product
+        ])
+    }
+
+   /* ---------------------------- SAVE PRODUCTS AND QUANTIFY IN AN ARRAY -------------------------------------------*/
+
+    const [productsToOrder, setProductsToOrder] = useState([
+    ]);
+
+    const orderProducts = (product) => {
+        setProductsToOrder ([
+            ...productsToOrder,
+            {
+                qty: 1,
+                product: product._id,
+            }
+        ])
+    }
+
+    console.log(productsCart);
+    console.log(productsToOrder);
+    
+
+    /* ---------------------------- SAVE CLIENT'S NAME -------------------------------------------*/
+
+    const [client, setClient] = useState('');
+
+    const handleInputChange = (event) => {
+        setClient({
+            [event.target.name] : event.target.value
+        })
+    }
+
+    console.log(client.client);
+
+    /* ---------------------------- TOTAL PRICE -------------------------------------------*/
+    const [total, setTotal] = useState(0);
+
+    const calculateTotalPrice = (price) => {
+        setTotal(total + price)
+    }
+
+    /* ---------------------------- REMOVE AN ELEMENT -------------------------------------------*/
+    const handleRemove = (_id) => {
+        const newProducts = productsCart.filter((product) => product._id !== _id)
+        setProductsCart(newProducts)
+    }
+
+    /* ---------------------------- CREATE AND ORDER -------------------------------------------*/
+    
+    const handleCreateOrder = () => {
+        const url = 'https://bq-lim015.herokuapp.com/orders';
+        const token = localStorage.getItem('token')
+        const config = {
+            headers: { token: token }
+        };
+        const order = {
+            userId: localStorage.getItem('userId'),
+            client: client.client,
+            status: 'pending',
+            products: productsToOrder
+          };
+        axios.post(url, order, config).then((response) => {
+            console.log(response);
+            toast.success('The order was created!', {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        })
+        .catch((error) => {
+            console.info(error);
+        } )
+    }
+
     return (
         <section className='sectionOrders'>
             <div className='divProducts'>
@@ -42,25 +134,52 @@ const Orders = () => {
                     <button className='showBreakfasts' onClick={showBreakfasts}>Breakfast</button>
                     <button className='showLunches' onClick={showLunches}>Lunches</button>
                 </div>
-                {dataTypeProducts.map((product) => {
+                {dataTypeProducts.map((product, i) => {
                     return (
-                        <div className='containerCard'>
+                        <div className='containerCard' key={i}>
                             <div className='card'>
                                 <div className='containerImage'>
                                     <img src={product.image} alt='product' className='imageProduct'/>   
                                 </div>
-                                
                                 <p className='product'>Product: <span className='infoProduct'> {product.name} </span> </p>
-                                <p className='product'>Price <span className='infoProduct'> {product.price} </span> </p>
-                                <button className='btnAddOrder'>Add to order</button>
+                                <p className='product'>Price: <span className='infoProduct'> S/.{product.price} </span> </p>
+                                <button className='btnAddOrder' onClick={() =>{showProductsCart(product); orderProducts(product); calculateTotalPrice(product.price) } }>Add to order</button>
                             </div>
                         </div>
                     )
                  })}
             </div>
             <div className='divOrderCart'>
-                <p>soy el carrito</p>
+                <div className='tableCart' >
+                    <p className='titleCreateOrder'>Create a new order</p>
+                    <input onChange={handleInputChange} className='inputClient' type="text" name='client' placeholder='Client name'/>
+                    <table className='tableContent'>
+                        <thead>
+                            <tr>
+                                <th className='tableContent'>Product</th>
+                                <th className='tableContent'>Price</th>
+                                <th className='tableContent'>Quantify</th>
+                                <th className='tableContent'></th>
+                            </tr>
+                        </thead>
+                        {productsCart.map((product, i) => {
+                        return (
+                        <tbody key={i}>
+                            <tr>
+                                <td className='tableContent'> {product.name} </td>
+                                <td className='tableContent'>  S/.{product.price} </td>
+                                <td className='tableContent'> <button className='btnPlus' ><FontAwesomeIcon  icon={faPlus} /> </button> <button  className='btnMinus'><FontAwesomeIcon  icon={faMinus} /></button></td>
+                                <td className='tableContent'> <button onClick={ () => handleRemove(product._id)} className='btnX'>x</button> </td>
+                            </tr>
+                        </tbody>
+                        )  
+                        })}
+                    </table>
+                    <p>Total:  S/.{total} </p>
+                    <button className='btnCreateOrder' onClick={handleCreateOrder}>Send to Kitchen</button>
+                </div>
             </div>
+            <ToastContainer />
         </section>
     )
 }

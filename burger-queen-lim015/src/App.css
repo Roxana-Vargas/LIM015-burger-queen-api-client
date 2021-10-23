@@ -57,6 +57,7 @@ a:hover{
   justify-content: center;
 }
 .welcome {
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -180,11 +181,12 @@ table {
   background-color: #F3F0F0;
   border-collapse: collapse;
   width: 100%;
+  margin-bottom: 100px;
 }
 
 td, th {
   border: 1px solid #dddddd;
-  text-align: left;
+  text-align: center;
   padding: 8px;
 }
 
@@ -468,10 +470,7 @@ input[type=number] { -moz-appearance:textfield; }
   width: 50%;
   height: 1200px;
 }
-.divOrderCart{
-  background-color: white;
-  width: 50%;
-}
+
 .divBtnsOrder{
   margin-top: 0px;
   display: flex;
@@ -540,9 +539,10 @@ input[type=number] { -moz-appearance:textfield; }
   background-color: white;
   width: 40%;
   height: 320px;
-  margin-left: 7%;
+  margin-right: 7%;
   border-radius: 5px;
   float: left;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
 }
 
 .imageProduct{
@@ -550,4 +550,82 @@ input[type=number] { -moz-appearance:textfield; }
   height: 150px;
   margin-left: 25%;
   margin-top: 10px;
+}
+
+/* card to order */
+.divOrderCart{
+  background-color: white;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.tableCart{
+  width: 90%;
+}
+
+.titleCreateOrder{
+  font-weight: bold;
+  text-align: center;
+}
+
+.inputClient{
+  border: none;
+  border-bottom:1px solid black;
+  width: 100%;
+  margin-bottom:20px;
+  outline: none;
+}
+
+.inputClient::placeholder {
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+}
+
+.tableContent{
+  background-color: white;
+  border:"0";
+}
+
+.tableContent{border: none;}
+
+.btnPlus{
+  background-color: rgb(236, 233, 231);
+  font-size: 14px;
+  border-radius: 2px;
+  margin-right: 10px;
+  padding: 5px;
+  border: none;
+}
+
+.btnMinus{
+  background-color: rgb(236, 233, 231);
+  font-size: 14px;
+  border-radius: 2px;
+  padding: 5px;
+  margin-left: 10px;
+  border: none;
+}
+
+.btnX{
+  background-color: white;
+  font-size: 22px;
+  padding: 5px;
+  margin-left: 10px;
+  border: none;
+  color: #DB3535;
+}
+
+.btnCreateOrder{
+  background-color: #F3C13F;
+  border-radius: 7px;
+  color: white;
+  border:none;
+  width: 40%;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  margin-top: 50px;
+  margin-left: 30%;
 }
