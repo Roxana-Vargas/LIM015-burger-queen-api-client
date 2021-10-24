@@ -5,6 +5,8 @@ import { faPlus, faMinus, faAngleLeft, faPenSquare, faTrash, faCheck} from "@for
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import ModalStatusDelivered from './ModalStatusDelivered';
+
 
 const Orders = () => {
     /* ------------------------------------- GET ALL PRODUCTS -----------------------------------------------*/
@@ -66,11 +68,7 @@ const Orders = () => {
             }
         ])
     }
-
-    console.log(productsCart);
-    console.log(productsToOrder);
     
-
     /* ---------------------------- SAVE CLIENT'S NAME -------------------------------------------*/
 
     const [client, setClient] = useState('');
@@ -80,8 +78,6 @@ const Orders = () => {
             [event.target.name] : event.target.value
         })
     }
-
-    console.log(client.client);
 
     /* ---------------------------- TOTAL PRICE -------------------------------------------*/
     const [total, setTotal] = useState(0);
@@ -111,7 +107,6 @@ const Orders = () => {
             products: productsToOrder
           };
         axios.post(url, order, config).then((response) => {
-            console.log(response);
             getOrders();
             toast.success('The order was created!', {
                 position: "bottom-center",
@@ -151,6 +146,43 @@ const Orders = () => {
         getOrders();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    /* ---------------------------- MARK ORDER AS DELIVERED -------------------------------------------*/
+
+    const [isOpenModal, setIsOpenModal] = useState(false)
+
+    const openModal = () => {
+        setIsOpenModal(true);
+    }
+
+    const closeModal = () => {
+        setIsOpenModal(false);
+    }
+
+    const [idOrder, setIdOrder] = useState('');
+
+    const selectOrder = (order) => {
+        setIdOrder(order._id);
+    }
+
+    const updateStatusToDelivered = () => {
+        
+        const url = `https://bq-lim015.herokuapp.com/orders/${idOrder}`;
+        const token = localStorage.getItem('token')
+        const config = {
+            headers: { token: token }
+        };
+        const status = {
+            status: 'delivered'
+        }
+        axios.put(url, status, config).then((response) => {
+            console.log(response);
+            getOrders();
+            closeModal();
+        }).catch((error) => {
+            console.info(error);
+        })
+    }
 
     return (
         <section className='sectionOrders'>
@@ -232,7 +264,8 @@ const Orders = () => {
                                 <div className='btnsOrder'>
                                     <span className='icon-order'><FontAwesomeIcon className='btn-update ' icon={faPenSquare}/></span>
                                     <span className='icon-order'><FontAwesomeIcon className='btn-delete' icon={faTrash}/></span>
-                                    <span className='icon-order'><FontAwesomeIcon className='btn-check' icon={faCheck}/></span>  
+                                    <span onClick={() => {selectOrder(order); openModal()}} className='icon-order'><FontAwesomeIcon className='btn-check' icon={faCheck}/></span>
+                                    {isOpenModal && <ModalStatusDelivered closeModal={closeModal} handleUpdate={updateStatusToDelivered} />}
                                 </div>
                             </div>
                         </div>
