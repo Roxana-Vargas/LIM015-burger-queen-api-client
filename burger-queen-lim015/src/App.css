@@ -201,6 +201,7 @@ tr:nth-child(even) {
   color: #F3C13F;
   background-color: transparent;
   font-size: 20px;
+  padding-right: 10px;
 }
 
 .btn-delete{
@@ -209,6 +210,8 @@ tr:nth-child(even) {
   color: #DB3535;
   background-color: transparent;
   font-size: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 
@@ -558,6 +561,8 @@ input[type=number] { -moz-appearance:textfield; }
   width: 50%;
   display: flex;
   justify-content: center;
+  border-radius: 10px;
+  height: 700px;
 }
 
 .tableCart{
@@ -567,6 +572,8 @@ input[type=number] { -moz-appearance:textfield; }
 .titleCreateOrder{
   font-weight: bold;
   text-align: center;
+  margin-top: 50px;
+  margin-bottom: 40px;
 }
 
 .inputClient{
@@ -574,6 +581,7 @@ input[type=number] { -moz-appearance:textfield; }
   border-bottom:1px solid black;
   width: 100%;
   margin-bottom:20px;
+  margin-left: 30px;
   outline: none;
 }
 
@@ -626,6 +634,83 @@ input[type=number] { -moz-appearance:textfield; }
   font-size: 20px;
   font-family: 'Raleway', sans-serif;
   cursor: pointer;
-  margin-top: 50px;
+  margin-top: 10px;
   margin-left: 30%;
 }
+
+.totalPriceCart{
+  margin-left: 30px;
+  font-weight: bold;
+}
+
+/*orders card */
+.viewAllOrders{
+  background-color: #EB5B30;
+  border-radius: 7px;
+  color: white;
+  border:none;
+  width: 40%;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  margin-top: 70px;
+  margin-left: 50%;
+}
+
+.containerOrders {
+  width: 100%;
+}
+
+.cardOrders {
+  background-color: white;
+  width: 21.5%;
+  height: 350px;
+  margin-left: 21px;
+  margin-right: 29px;
+  margin-bottom: 50px;
+  float: left;
+  border-radius: 10px;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+}
+
+.btnBack{
+  background-color: #F3C13F;
+  border-radius: 7px;
+  color: white;
+  border:none;
+  width: 10%;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.status{
+  margin-left: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.spanStatus {
+  font-weight: lighter;
+}
+
+.btn-check{
+  border: none;
+  cursor: pointer;
+  color: #36c260;
+  background-color: transparent;
+  font-size: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.btnsOrder{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 40px;
+}
+

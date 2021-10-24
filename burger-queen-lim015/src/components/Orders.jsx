@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 /*import CardToOrder from './CardToOrder';*/
-import { faPlus, faMinus} from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faMinus, faAngleLeft, faPenSquare, faTrash, faCheck} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
@@ -112,6 +112,7 @@ const Orders = () => {
           };
         axios.post(url, order, config).then((response) => {
             console.log(response);
+            getOrders();
             toast.success('The order was created!', {
                 position: "bottom-center",
                 autoClose: 5000,
@@ -127,9 +128,33 @@ const Orders = () => {
         } )
     }
 
+    /* ---------------------------- SHOW AND HIDE  -------------------------------------------*/
+
+    const [show, setShow] = useState(true);
+
+    /* ---------------------------- GET ALL ORDERS -------------------------------------------*/
+
+    const [dataOrders, setDataOrders] = useState([]);
+
+    const getOrders = () => {
+        const url = 'https://bq-lim015.herokuapp.com/orders';
+        const token = localStorage.getItem('token')
+        const config = {
+            headers: { token: token }
+        };
+        axios.get(url, config).then((response) => {
+            setDataOrders(response.data)
+        })
+    }
+
+    useEffect(() => {
+        getOrders();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     return (
         <section className='sectionOrders'>
-            <div className='divProducts'>
+            <div className='divProducts' style={{ display: show ? "block" : "none" }}>
                 <div className='divBtnsOrder'> 
                     <button className='showBreakfasts' onClick={showBreakfasts}>Breakfast</button>
                     <button className='showLunches' onClick={showLunches}>Lunches</button>
@@ -149,7 +174,7 @@ const Orders = () => {
                     )
                  })}
             </div>
-            <div className='divOrderCart'>
+            <div className='divOrderCart' style={{ display: show ? "block" : "none" }}>
                 <div className='tableCart' >
                     <p className='titleCreateOrder'>Create a new order</p>
                     <input onChange={handleInputChange} className='inputClient' type="text" name='client' placeholder='Client name'/>
@@ -175,11 +200,45 @@ const Orders = () => {
                         )  
                         })}
                     </table>
-                    <p>Total:  S/.{total} </p>
+                    <p className='totalPriceCart'>Total:  S/.{total} </p>
                     <button className='btnCreateOrder' onClick={handleCreateOrder}>Send to Kitchen</button>
+                </div>
+                <div>
+                    <button className='viewAllOrders' onClick={() => setShow((s) => !s)}>View All Orders</button>    
                 </div>
             </div>
             <ToastContainer />
+            <div className='containerOrders' style={{ display: show ? "none" : "block" }}>
+                <button className='btnBack' onClick={() => setShow((s) => !s)}> <FontAwesomeIcon icon={faAngleLeft}/> Back</button>
+                {dataOrders.map((order, i) => {
+                    return (
+                        <div  key={i}>
+                            <div className='cardOrders'>
+                                <p className='product'> {order.client} </p>
+                                <table className='tableOrder'>
+                                    <tbody>
+                                        {order.products.map((ele, i) => {
+                                            return (
+                                              <tr key={i}>  
+                                                <td className='tableContent'>{ele.product.name}</td>
+                                                <td className='tableContent'>{ele.qty}</td>
+                                                <td className='tableContent'>S/{ele.product.price}</td>
+                                                </tr>
+                                            )
+                                        })}
+                                    </tbody>
+                                </table>
+                                <p className='status'> Status: <span className='spanStatus'>{order.status}</span>  </p>
+                                <div className='btnsOrder'>
+                                    <span className='icon-order'><FontAwesomeIcon className='btn-update ' icon={faPenSquare}/></span>
+                                    <span className='icon-order'><FontAwesomeIcon className='btn-delete' icon={faTrash}/></span>
+                                    <span className='icon-order'><FontAwesomeIcon className='btn-check' icon={faCheck}/></span>  
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
         </section>
     )
 }
