@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { faAngleRight, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ModalStatusDelivering from './ModalStatusDelivering';
+
 
 const StatusOfOrder = () => {
 
-    /* ------------------------------------- GET ALL ORDERS  -----------------------------------------------*/
+    /* ------------------------------------- GET ALL ORDERS ACCORDING TO STATUS  -----------------------------------------------*/
 
     const [dataPendingOrders, setDataPendingOrders] = useState([]);
     const [dataDeliveringOrders, setDataDeliveringOrders] = useState([]);
@@ -24,9 +26,6 @@ const StatusOfOrder = () => {
             setDataDeliveringOrders(delivering);
             const delivered = response.data.filter((order) => order.status ==='delivered')
             setDataDeliveredOrders(delivered);
-
-
-            /*setDataOrders(response.data)*/
         })
     }
 
@@ -35,8 +34,41 @@ const StatusOfOrder = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    /* ------------------------------------- GSHOW ORDERS ACCORDING TO STATUS -----------------------------------------------*/
+    /* ------------------------------UPDATE ORDER STATUS FROM PENDING TO DELIVERING -------------------------------------*/
     
+    const [idOrder, setIdOrder] = useState('');
+
+    const selectOrder = (order) => {
+        setIdOrder(order._id);
+    }
+
+    const [isOpenModal, setIsOpenModal] = useState(false)
+
+    const openModal = () => {
+        setIsOpenModal(true);
+    }
+
+    const closeModal = () => {
+        setIsOpenModal(false);
+    }
+
+    const updateStatusToDelivering = () => {
+        const url = `https://bq-lim015.herokuapp.com/orders/${idOrder}`;
+        const token = localStorage.getItem('token')
+        const config = {
+            headers: { token: token }
+        };
+        const status = {
+            status: 'delivering'
+        }
+        axios.put(url, status, config).then((response) => {
+            console.log(response);
+            getOrders();
+            closeModal();
+        }).catch((error) => {
+            console.info(error);
+        })
+    }
 
     return (
         <div className='containerStatusOrders'>
@@ -59,7 +91,8 @@ const StatusOfOrder = () => {
                                     })}
                                 </tbody>
                             </table>
-                            <button className='btnMove'>Move <FontAwesomeIcon icon={faAngleRight}/></button>
+                            <button onClick={() => {selectOrder(order); openModal()}} className='btnMove'>Move <FontAwesomeIcon icon={faAngleRight}/></button>
+                            { isOpenModal && <ModalStatusDelivering closeModal={closeModal} handleUpdate={updateStatusToDelivering}/>}
                         </div>
                     )
                 })}
