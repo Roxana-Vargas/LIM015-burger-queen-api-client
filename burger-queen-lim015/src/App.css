@@ -506,10 +506,11 @@ input[type=number] { -moz-appearance:textfield; }
 }
 
 
-.product{
+.nameClient{
   font-weight: bold;
   font-size: 18px;
   margin-left: 20px;
+  padding-top: 15px;
 }
 
 .infoProduct{
@@ -728,4 +729,69 @@ input[type=number] { -moz-appearance:textfield; }
 
 .txtUpdateStatus{
   text-align: center;
+}
+
+/* status orders */
+
+.containerStatusOrders{
+  width: 90%;
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.divOrders{
+  background-color: #F9F3F3;
+  width: 32%;
+  height: 670px;
+  border-radius: 10px;
+}
+
+.txtPending{
+  font-weight: bold;
+  text-align: center;
+  color: #EB5B30;
+}
+
+.txtDelivering{
+  font-weight: bold;
+  text-align: center;
+  color:#F3C13F;
+}
+
+.txtDelivered{
+  font-weight: bold;
+  text-align: center;
+  color: #36c260;
+}
+
+.cardStatusOrder{
+  background-color: white;
+  width: 90%;
+  margin-left: 5%;
+  height: 250px;
+}
+
+.btnMove{
+  background-color: #F3C13F;
+  border-radius: 7px;
+  color: white;
+  border:none;
+  width: 40%;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin-left: 30%;
+}
+
+.tableOrder{
+  margin-bottom: 40px;
+}
+
+.hideOrder{
+  margin-top: 35px;
+  margin-left: 80%;
 }

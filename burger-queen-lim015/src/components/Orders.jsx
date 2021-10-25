@@ -246,7 +246,7 @@ const Orders = () => {
                     return (
                         <div  key={i}>
                             <div className='cardOrders'>
-                                <p className='product'> {order.client} </p>
+                                <p className='nameClient'> {order.client} </p>
                                 <table className='tableOrder'>
                                     <tbody>
                                         {order.products.map((ele, i) => {
