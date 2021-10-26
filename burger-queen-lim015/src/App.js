@@ -17,6 +17,11 @@ import logo from './images/logo-bq.png';
 
 
 function App() {
+
+  const logout = () => {
+    localStorage.clear()
+  }
+
   return (
     <Router>
       <div className="App">
@@ -41,7 +46,8 @@ function App() {
               <Link to="/profile">Profile</Link>
             </li>
             <li>
-              <Link to="/">Log Out</Link>
+              <Link onClick={logout} to="/">Log Out</Link>
+              
             </li>
           </ul>
         </nav>
