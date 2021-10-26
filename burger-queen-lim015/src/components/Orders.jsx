@@ -231,6 +231,7 @@ const Orders = () => {
                         </tbody>
                         )  
                         })}
+                        
                     </table>
                     <p className='totalPriceCart'>Total:  S/.{total} </p>
                     <button className='btnCreateOrder' onClick={handleCreateOrder}>Send to Kitchen</button>
@@ -258,6 +259,7 @@ const Orders = () => {
                                                 </tr>
                                             )
                                         })}
+                                        
                                     </tbody>
                                 </table>
                                 <p className='status'> Status: <span className='spanStatus'>{order.status}</span>  </p>

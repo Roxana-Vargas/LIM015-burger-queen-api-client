@@ -70,7 +70,6 @@ const Users = () => {
     }
     useEffect(() => {
         getUsers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     })
 
     /* --------------------------------------------------- GET ALL USERS ------------------------------------------------- */
