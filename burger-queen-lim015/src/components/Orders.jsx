@@ -139,7 +139,8 @@ const Orders = () => {
             headers: { token: token }
         };
         axios.get(url, config).then((response) => {
-            setDataOrders(response.data)
+            const filterOrders = response.data.filter((order) => order.status ==='pending'|| order.status ==='delivering')
+            setDataOrders(filterOrders)
         })
     }
 
@@ -247,7 +248,8 @@ const Orders = () => {
             <ToastContainer />
             <div className='containerOrders' style={{ display: show ? "none" : "block" }}>
                 <button className='btnBack' onClick={() => setShow((s) => !s)}> <FontAwesomeIcon icon={faAngleLeft} /> Back</button>
-                {dataOrders.map((order, i) => {
+                {
+                dataOrders.map((order, i) => {
                     return (
                         <div key={i}>
                             <div className='cardOrders'>
@@ -263,7 +265,6 @@ const Orders = () => {
                                                 </tr>
                                             );
                                         })}
-
                                     </tbody>
                                 </table>
                                 <p className='status'> Status: <span className='spanStatus'>{order.status}</span>  </p>
