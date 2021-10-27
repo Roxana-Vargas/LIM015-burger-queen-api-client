@@ -3,6 +3,7 @@ import axios from 'axios';
 import { faAngleRight, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ModalStatusDelivering from './ModalStatusDelivering';
+import Navigation from './Navigation';
 
 
 const StatusOfOrder = () => {
@@ -71,6 +72,7 @@ const StatusOfOrder = () => {
     }
 
     return (
+        <><Navigation />
         <div className='containerStatusOrders'>
             <div className='divOrders'>
                 <p className='txtPending'>Pending</p>
@@ -83,21 +85,21 @@ const StatusOfOrder = () => {
                                 <tbody>
                                     {order.products.map((ele, i) => {
                                         return (
-                                            <tr key={i}>  
+                                            <tr key={i}>
                                                 <td className='tableContent'>{ele.product.name}</td>
                                                 <td className='tableContent'>{ele.qty}</td>
                                             </tr>
-                                        )
+                                        );
                                     })}
                                 </tbody>
                             </table>
-                            <button onClick={() => {selectOrder(order); openModal()}} className='btnMove'>Move <FontAwesomeIcon icon={faAngleRight}/></button>
-                            { isOpenModal && <ModalStatusDelivering closeModal={closeModal} handleUpdate={updateStatusToDelivering}/>}
+                            <button onClick={() => { selectOrder(order); openModal(); } } className='btnMove'>Move <FontAwesomeIcon icon={faAngleRight} /></button>
+                            {isOpenModal && <ModalStatusDelivering closeModal={closeModal} handleUpdate={updateStatusToDelivering} />}
                         </div>
-                    )
+                    );
                 })}
             </div>
-            <div className='divOrders'> 
+            <div className='divOrders'>
                 <p className='txtDelivering'>Delivering</p>
                 <hr />
                 {dataDeliveringOrders.map((order, i) => {
@@ -108,16 +110,16 @@ const StatusOfOrder = () => {
                                 <tbody>
                                     {order.products.map((ele, i) => {
                                         return (
-                                            <tr key={i}>  
+                                            <tr key={i}>
                                                 <td className='tableContent'>{ele.product.name}</td>
                                                 <td className='tableContent'>{ele.qty}</td>
                                             </tr>
-                                        )
+                                        );
                                     })}
                                 </tbody>
                             </table>
                         </div>
-                    )
+                    );
                 })}
             </div>
             <div className='divOrders'>
@@ -131,20 +133,20 @@ const StatusOfOrder = () => {
                                 <tbody>
                                     {order.products.map((ele, i) => {
                                         return (
-                                            <tr key={i}>  
+                                            <tr key={i}>
                                                 <td className='tableContent'>{ele.product.name}</td>
                                                 <td className='tableContent'>{ele.qty}</td>
                                             </tr>
-                                        )
+                                        );
                                     })}
                                 </tbody>
                             </table>
-                            <button className='btn-delete hideOrder'><FontAwesomeIcon icon={faTrash}/></button>
+                            <button className='btn-delete hideOrder'><FontAwesomeIcon icon={faTrash} /></button>
                         </div>
-                    )
+                    );
                 })}
             </div>
-        </div>
+        </div></>
     )
 }
 

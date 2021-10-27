@@ -4,8 +4,9 @@ import axios from 'axios';
 import { faPlus, faMinus, faAngleLeft, faPenSquare, faTrash, faCheck} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+import 'react-toastify/dist/ReactToastify.css';
 import ModalStatusDelivered from './ModalStatusDelivered';
+import Navigation from './Navigation';
 
 
 const Orders = () => {
@@ -185,9 +186,10 @@ const Orders = () => {
     }
 
     return (
+        <><Navigation />
         <section className='sectionOrders'>
             <div className='divProducts' style={{ display: show ? "block" : "none" }}>
-                <div className='divBtnsOrder'> 
+                <div className='divBtnsOrder'>
                     <button className='showBreakfasts' onClick={showBreakfasts}>Breakfast</button>
                     <button className='showLunches' onClick={showLunches}>Lunches</button>
                 </div>
@@ -196,20 +198,20 @@ const Orders = () => {
                         <div className='containerCard' key={i}>
                             <div className='card'>
                                 <div className='containerImage'>
-                                    <img src={product.image} alt='product' className='imageProduct'/>   
+                                    <img src={product.image} alt='product' className='imageProduct' />
                                 </div>
                                 <p className='product'>Product: <span className='infoProduct'> {product.name} </span> </p>
                                 <p className='product'>Price: <span className='infoProduct'> S/.{product.price} </span> </p>
-                                <button className='btnAddOrder' onClick={() =>{showProductsCart(product); orderProducts(product); calculateTotalPrice(product.price) } }>Add to order</button>
+                                <button className='btnAddOrder' onClick={() => { showProductsCart(product); orderProducts(product); calculateTotalPrice(product.price); } }>Add to order</button>
                             </div>
                         </div>
-                    )
-                 })}
+                    );
+                })}
             </div>
             <div className='divOrderCart' style={{ display: show ? "block" : "none" }}>
-                <div className='tableCart' >
+                <div className='tableCart'>
                     <p className='titleCreateOrder'>Create a new order</p>
-                    <input onChange={handleInputChange} className='inputClient' type="text" name='client' placeholder='Client name'/>
+                    <input onChange={handleInputChange} className='inputClient' type="text" name='client' placeholder='Client name' />
                     <table className='tableContent'>
                         <thead>
                             <tr>
@@ -220,61 +222,61 @@ const Orders = () => {
                             </tr>
                         </thead>
                         {productsCart.map((product, i) => {
-                        return (
-                        <tbody key={i}>
-                            <tr>
-                                <td className='tableContent'> {product.name} </td>
-                                <td className='tableContent'>  S/.{product.price} </td>
-                                <td className='tableContent'> <button className='btnPlus' ><FontAwesomeIcon  icon={faPlus} /> </button> <button  className='btnMinus'><FontAwesomeIcon  icon={faMinus} /></button></td>
-                                <td className='tableContent'> <button onClick={ () => handleRemove(product._id)} className='btnX'>x</button> </td>
-                            </tr>
-                        </tbody>
-                        )  
+                            return (
+                                <tbody key={i}>
+                                    <tr>
+                                        <td className='tableContent'> {product.name} </td>
+                                        <td className='tableContent'>  S/.{product.price} </td>
+                                        <td className='tableContent'> <button className='btnPlus'><FontAwesomeIcon icon={faPlus} /> </button> <button className='btnMinus'><FontAwesomeIcon icon={faMinus} /></button></td>
+                                        <td className='tableContent'> <button onClick={() => handleRemove(product._id)} className='btnX'>x</button> </td>
+                                    </tr>
+                                </tbody>
+                            );
                         })}
-                        
+
                     </table>
                     <p className='totalPriceCart'>Total:  S/.{total} </p>
                     <button className='btnCreateOrder' onClick={handleCreateOrder}>Send to Kitchen</button>
                 </div>
                 <div>
-                    <button className='viewAllOrders' onClick={() => setShow((s) => !s)}>View All Orders</button>    
+                    <button className='viewAllOrders' onClick={() => setShow((s) => !s)}>View All Orders</button>
                 </div>
             </div>
             <ToastContainer />
             <div className='containerOrders' style={{ display: show ? "none" : "block" }}>
-                <button className='btnBack' onClick={() => setShow((s) => !s)}> <FontAwesomeIcon icon={faAngleLeft}/> Back</button>
+                <button className='btnBack' onClick={() => setShow((s) => !s)}> <FontAwesomeIcon icon={faAngleLeft} /> Back</button>
                 {dataOrders.map((order, i) => {
                     return (
-                        <div  key={i}>
+                        <div key={i}>
                             <div className='cardOrders'>
                                 <p className='nameClient'> {order.client} </p>
                                 <table className='tableOrder'>
                                     <tbody>
                                         {order.products.map((ele, i) => {
                                             return (
-                                              <tr key={i}>  
-                                                <td className='tableContent'>{ele.product.name}</td>
-                                                <td className='tableContent'>{ele.qty}</td>
-                                                <td className='tableContent'>S/{ele.product.price}</td>
+                                                <tr key={i}>
+                                                    <td className='tableContent'>{ele.product.name}</td>
+                                                    <td className='tableContent'>{ele.qty}</td>
+                                                    <td className='tableContent'>S/{ele.product.price}</td>
                                                 </tr>
-                                            )
+                                            );
                                         })}
-                                        
+
                                     </tbody>
                                 </table>
                                 <p className='status'> Status: <span className='spanStatus'>{order.status}</span>  </p>
                                 <div className='btnsOrder'>
-                                    <span className='icon-order'><FontAwesomeIcon className='btn-update ' icon={faPenSquare}/></span>
-                                    <span className='icon-order'><FontAwesomeIcon className='btn-delete' icon={faTrash}/></span>
-                                    <span onClick={() => {selectOrder(order); openModal()}} className='icon-order'><FontAwesomeIcon className='btn-check' icon={faCheck}/></span>
+                                    <span className='icon-order'><FontAwesomeIcon className='btn-update ' icon={faPenSquare} /></span>
+                                    <span className='icon-order'><FontAwesomeIcon className='btn-delete' icon={faTrash} /></span>
+                                    <span onClick={() => { selectOrder(order); openModal(); } } className='icon-order'><FontAwesomeIcon className='btn-check' icon={faCheck} /></span>
                                     {isOpenModal && <ModalStatusDelivered closeModal={closeModal} handleUpdate={updateStatusToDelivered} />}
                                 </div>
                             </div>
                         </div>
-                    )
+                    );
                 })}
             </div>
-        </section>
+        </section></>
     )
 }
 

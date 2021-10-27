@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+import 'react-toastify/dist/ReactToastify.css';
+import Navigation from './Navigation';
 
 const Profile = () => {
 
@@ -97,23 +98,24 @@ const Profile = () => {
   }
 
   return (
+    <><Navigation />
     <div>
       <p className='myProfile'>My profile</p>
       <div className='containerProfile'>
         <div className='infoUser'>
           <form>
-            <p className='infoProfile'> Email: <span><input onChange={handleInputChange} defaultValue={dataUser.email} className='inputProfile' readOnly={isReadonly} type='text'  name='email'  autoComplete="username" ></input></span></p>
-            <p className='infoProfile'>Password: <span><input onChange={handleInputChange} defaultValue={dataUser.password} className='inputProfile' readOnly={isReadonly}type='password'  name='password'  autoComplete="current-password"></input></span></p>
+            <p className='infoProfile'> Email: <span><input onChange={handleInputChange} defaultValue={dataUser.email} className='inputProfile' readOnly={isReadonly} type='text' name='email' autoComplete="username"></input></span></p>
+            <p className='infoProfile'>Password: <span><input onChange={handleInputChange} defaultValue={dataUser.password} className='inputProfile' readOnly={isReadonly} type='password' name='password' autoComplete="current-password"></input></span></p>
             <p className='infoProfile'>Roles: <span><input value={dataUser.roles[0] === '615a8dbbe99308986396e976' ? 'user' : 'admin'} className='inputProfile' readOnly type="text" /></span></p>
           </form>
           <div className='btnsUpdateUser'>
-          {isBtnSave &&  <button onClick={() => {saveChanges(); updateUser()}} className='btnSaveChanges'>Save changes</button>}
-          <button onClick={editUser} className='btnEditUser'>Edit</button>
+            {isBtnSave && <button onClick={() => { saveChanges(); updateUser(); } } className='btnSaveChanges'>Save changes</button>}
+            <button onClick={editUser} className='btnEditUser'>Edit</button>
           </div>
         </div>
       </div>
       <ToastContainer />
-    </div>
+    </div></>
   );
 }
 

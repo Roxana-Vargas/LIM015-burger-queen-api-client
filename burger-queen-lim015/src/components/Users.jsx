@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import logo from '../images/logo-bq.png';
+import Navigation from './Navigation';
 
 const Users = () => {
 
@@ -202,81 +203,82 @@ const Users = () => {
     /* -------------------------------------------------------------- INTERFAZ ---------------------------------------------------- */
 
     return (
+        <><Navigation />
         <section className='container-users'>
             <div className='createNewUser'><p>Create a new user</p></div>
-                <div className='createUser'>
-                    <form onSubmit={handleSubmit}>
-                        <input onChange={handleInputChange}  type='text' placeholder='Email Adress'  name='email' className='input-createUser'></input>
-                        <input onChange={handleInputChange}  type='password' placeholder='Password' name='password' className='input-createUser' autoComplete="on"></input>
-                        <select onChange={handleInputChange} name="roles" className='select-css'>
-                            <option>user</option>
-                            <option>admin</option>
-                        </select>
-                        <input  type='submit' value='Create' className='btn-createUser'></input>
-                    </form>
-                </div>
-                <ToastContainer />
+            <div className='createUser'>
+                <form onSubmit={handleSubmit}>
+                    <input onChange={handleInputChange} type='text' placeholder='Email Adress' name='email' className='input-createUser'></input>
+                    <input onChange={handleInputChange} type='password' placeholder='Password' name='password' className='input-createUser' autoComplete="on"></input>
+                    <select onChange={handleInputChange} name="roles" className='select-css'>
+                        <option>user</option>
+                        <option>admin</option>
+                    </select>
+                    <input type='submit' value='Create' className='btn-createUser'></input>
+                </form>
+            </div>
+            <ToastContainer />
 
-                <div className='containerTable'>
-                    <table className='table'>
-                        <thead>
-                            <tr>
-                                <th>Roles</th>
-                                <th>User Email</th>
-                                <th>Update</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+            <div className='containerTable'>
+                <table className='table'>
+                    <thead>
+                        <tr>
+                            <th>Roles</th>
+                            <th>User Email</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         {datos.map((user, i) => {
                             let roles = '';
-                            if (user.roles[0] === '615a8dbbe99308986396e977' ) {
+                            if (user.roles[0] === '615a8dbbe99308986396e977') {
                                 roles = 'admin';
                             } else {
                                 roles = 'user';
                             }
-                            return(
+                            return (
                                 <tr key={i}>
-                                <td>{roles}</td>
-                                <td>{user.email}</td>
-                                <td><button onClick={() => { openModal(); selectUser(user)}} className='btn-update'><FontAwesomeIcon icon={faUserEdit} /></button></td>
-                                <td><button onClick={() => { openModalDelete(); selectUser(user)}}  className='btn-delete'><FontAwesomeIcon icon={faTrash} /></button></td>
+                                    <td>{roles}</td>
+                                    <td>{user.email}</td>
+                                    <td><button onClick={() => { openModal(); selectUser(user); } } className='btn-update'><FontAwesomeIcon icon={faUserEdit} /></button></td>
+                                    <td><button onClick={() => { openModalDelete(); selectUser(user); } } className='btn-delete'><FontAwesomeIcon icon={faTrash} /></button></td>
                                 </tr>
-                            )
+                            );
                         })}
-                            </tbody>
-                    </table>
-                </div>
-                
-                {isOpenModal &&  
+                    </tbody>
+                </table>
+            </div>
+
+            {isOpenModal &&
                 <div className='modal'>
                     <div className='modalContenido'>
-                        <img src={logo} className='logoModal' alt='logo'/>
-                        <p>Update user</p> 
+                        <img src={logo} className='logoModal' alt='logo' />
+                        <p>Update user</p>
                         <form onSubmit={(evt) => handleSubmitUpdate(evt)}>
-                            <input onChange={handleInputChangeUpdate} defaultValue={datosForm.email} type='text' placeholder='Email Adress'  name='email' className='input-updateUser' autoComplete="username" ></input>
+                            <input onChange={handleInputChangeUpdate} defaultValue={datosForm.email} type='text' placeholder='Email Adress' name='email' className='input-updateUser' autoComplete="username"></input>
                             <input onChange={handleInputChangeUpdate} defaultValue={datosForm.password} type='password' placeholder='Password' name='password' className='input-updateUser' autoComplete="current-password"></input>
                             <select onChange={handleInputChangeUpdate} name="roles" className='select-updateUser'>
                                 <option value='615a8dbbe99308986396e976'>user</option>
                                 <option value='615a8dbbe99308986396e977'>admin</option>
                             </select>
-                            <input type='submit' value='Update' className='btn-updateUser'></input>  
+                            <input type='submit' value='Update' className='btn-updateUser'></input>
                             <button className='btn-updateCancel' onClick={closeModal}>Close</button>
-                        </form>  
-                    </div>  
-                </div>} 
-                {isOpenModalDelete &&  
+                        </form>
+                    </div>
+                </div>}
+            {isOpenModalDelete &&
                 <div className='modalDelete'>
                     <div className='modalContentDelete'>
-                        <img src={logo} className='logoModal' alt='logo'/>
-                        <p>Are you sure you want to delete this user?</p> 
+                        <img src={logo} className='logoModal' alt='logo' />
+                        <p>Are you sure you want to delete this user?</p>
                         <div className='btns-delete'>
-                            <button onClick={handleDelete}  className='btn-deleteUser'>Delete</button>  
+                            <button onClick={handleDelete} className='btn-deleteUser'>Delete</button>
                             <button className='btn-deleteCancel' onClick={closeModalDelete}>Close</button>
-                        </div> 
-                    </div>  
-                </div>} 
-        </section>
+                        </div>
+                    </div>
+                </div>}
+        </section></>
     )
 }
 

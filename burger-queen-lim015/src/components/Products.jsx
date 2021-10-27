@@ -6,7 +6,8 @@ import axios from 'axios';
 import { faPenSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+import 'react-toastify/dist/ReactToastify.css';
+import Navigation from './Navigation';
 
 
 const Products = () => {
@@ -214,6 +215,7 @@ const Products = () => {
 
 
     return (
+        <><Navigation />
         <section>
             <div className='createNewProduct'>
                 <p>Create a new product</p>
@@ -236,26 +238,26 @@ const Products = () => {
                         {dataProducts.map((product, i) => {
                             return (
                                 <tr key={i}>
-                                <td>{product.name}</td>
-                                <td>{product.price}</td>
-                                <td>{product.type}</td>
-                                <td><button className='btn-update' onClick={() => { openModalUpdate(); selectProduct(product)}}><FontAwesomeIcon icon={faPenSquare} /></button></td>
-                                <td><button className='btn-delete' onClick={() => { openModalDelete(); selectProduct(product)}}><FontAwesomeIcon icon={faTrash} /></button></td>
+                                    <td>{product.name}</td>
+                                    <td>{product.price}</td>
+                                    <td>{product.type}</td>
+                                    <td><button className='btn-update' onClick={() => { openModalUpdate(); selectProduct(product); } }><FontAwesomeIcon icon={faPenSquare} /></button></td>
+                                    <td><button className='btn-delete' onClick={() => { openModalDelete(); selectProduct(product); } }><FontAwesomeIcon icon={faTrash} /></button></td>
                                 </tr>
-                            )
+                            );
                         })}
                     </tbody>
                 </table>
             </div>
-            
-            {isOpenModal && <ModalCreateProduct closeModal={closeModal} handleInputChange ={handleInputChange} handleSubmitCreate={handleSubmitCreate} />}
+
+            {isOpenModal && <ModalCreateProduct closeModal={closeModal} handleInputChange={handleInputChange} handleSubmitCreate={handleSubmitCreate} />}
             <ToastContainer />
 
-            {isOpenModalUpdate && <ModalUpdateProduct name={dataNewProduct.name} price={dataNewProduct.price} image={dataNewProduct.image} type={dataNewProduct.type} closeModalUpdate={closeModalUpdate} handleInputChangeUpdate={handleInputChangeUpdate} handleSubmitUpdate={handleSubmitUpdate}/>}
+            {isOpenModalUpdate && <ModalUpdateProduct name={dataNewProduct.name} price={dataNewProduct.price} image={dataNewProduct.image} type={dataNewProduct.type} closeModalUpdate={closeModalUpdate} handleInputChangeUpdate={handleInputChangeUpdate} handleSubmitUpdate={handleSubmitUpdate} />}
 
-            {isOpenModalDelete && <ModalDeleteProduct closeModalDelete={closeModalDelete} handleDelete={handleDelete}/>}
-    
-        </section>
+            {isOpenModalDelete && <ModalDeleteProduct closeModalDelete={closeModalDelete} handleDelete={handleDelete} />}
+
+        </section></>
     )
 }
 
