@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ModalStatusDelivered from './ModalStatusDelivered';
+import ModalStatusCanceled from './ModalStatusCanceled';
 import Navigation from './Navigation';
 
 
@@ -186,6 +187,36 @@ const Orders = () => {
         })
     }
 
+    /* ---------------------------- MARK ORDER AS CANCELED -------------------------------------------*/
+
+    const [isOpenModalCanceled, setIsOpenModalCanceled] = useState(false)
+
+    const openModalCanceled = () => {
+        setIsOpenModalCanceled(true);
+    }
+
+    const closeModalCanceled = () => {
+        setIsOpenModalCanceled(false);
+    }
+
+    const updateStatusToCanceled = () => {
+        
+        const url = `https://bq-lim015.herokuapp.com/orders/${idOrder}`;
+        const token = localStorage.getItem('token')
+        const config = {
+            headers: { token: token }
+        };
+        const status = {
+            status: 'canceled'
+        }
+        axios.put(url, status, config).then((response) => {
+            console.log(response);
+            getOrders();
+            closeModalCanceled();
+        }).catch((error) => {
+            console.info(error);
+        })
+    }
     return (
         <><Navigation />
         <section className='sectionOrders'>
@@ -270,9 +301,11 @@ const Orders = () => {
                                 <p className='status'> Status: <span className='spanStatus'>{order.status}</span>  </p>
                                 <div className='btnsOrder'>
                                     <span className='icon-order'><FontAwesomeIcon className='btn-update ' icon={faPenSquare} /></span>
-                                    <span className='icon-order'><FontAwesomeIcon className='btn-delete' icon={faTrash} /></span>
+                                    <span onClick={() => { selectOrder(order); openModalCanceled(); } } className='icon-order'><FontAwesomeIcon className='btn-delete' icon={faTrash} /></span>
                                     <span onClick={() => { selectOrder(order); openModal(); } } className='icon-order'><FontAwesomeIcon className='btn-check' icon={faCheck} /></span>
                                     {isOpenModal && <ModalStatusDelivered closeModal={closeModal} handleUpdate={updateStatusToDelivered} />}
+                                    {isOpenModalCanceled && <ModalStatusCanceled closeModal={closeModalCanceled} handleUpdate={updateStatusToCanceled} />}
+                                    
                                 </div>
                             </div>
                         </div>
