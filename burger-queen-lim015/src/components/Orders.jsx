@@ -207,7 +207,9 @@ const Orders = () => {
                         </div>
                     );
                 })}
+                <hr className='line' />
             </div>
+            
             <div className='divOrderCart' style={{ display: show ? "block" : "none" }}>
                 <div className='tableCart'>
                     <p className='titleCreateOrder'>Create a new order</p>

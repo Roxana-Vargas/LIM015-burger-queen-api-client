@@ -514,6 +514,12 @@ input[type=number] { -moz-appearance:textfield; }
   padding-top: 15px;
 }
 
+.product{
+  margin-left: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
 .infoProduct{
   font-weight: lighter;
 }
@@ -542,8 +548,8 @@ input[type=number] { -moz-appearance:textfield; }
 .card{
   margin-top: 5%;
   background-color: white;
-  width: 40%;
-  height: 320px;
+  width: 25%;
+  height: 270px;
   margin-right: 7%;
   border-radius: 5px;
   float: left;
@@ -551,8 +557,8 @@ input[type=number] { -moz-appearance:textfield; }
 }
 
 .imageProduct{
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   margin-left: 25%;
   margin-top: 10px;
 }
@@ -576,6 +582,7 @@ input[type=number] { -moz-appearance:textfield; }
   text-align: center;
   margin-top: 50px;
   margin-bottom: 40px;
+  margin-left: 70px;
 }
 
 .inputClient{
@@ -706,14 +713,14 @@ input[type=number] { -moz-appearance:textfield; }
   color: #36c260;
   background-color: transparent;
   font-size: 20px;
-  padding-right: 10px;
+  padding-right: 30px;
   padding-left: 10px;
 }
 
 .btnsOrder{
   display: flex;
   justify-content: flex-end;
-  margin-top: 40px;
+  margin-top: 60px;
 }
 
 .modalUpdateStatus{
@@ -874,4 +881,13 @@ input[type=number] { -moz-appearance:textfield; }
   font-size: 24px;
   font-weight: 700;
 }
+
+.line{
+  margin-right: 65px;
+  width: 1px;
+  height: 1000px;
+  background-color: #EB5B30;
+  border: none;
+}
+
 
