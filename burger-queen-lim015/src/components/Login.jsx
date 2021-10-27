@@ -30,8 +30,9 @@ const Login = () => {
             const userId = user.id;
             localStorage.setItem('userId', userId)
             if (response.status === 200) {
-                localStorage.setItem('token', token)
+                localStorage.setItem('token', token);
                 history.push('/users')
+                
             }
         }).catch((error) => {
             let errorMessage = '';

@@ -13,36 +13,37 @@ import Profile from "./components/Profile";
 import StatusOfOrder from "./components/Status-orders";
 import Users from "./components/Users";
 import logo from './images/logo-bq.png';
+import { Redirect } from 'react-router';
 
 function App() {
 
-  
+  const token = localStorage.getItem('token')
 
   return (
     
     <Router>
       <div className="App">
         <header className='header'>
-        <img src={logo} className='logo' alt='logo'/>
+          <img src={logo} className='logo' alt='logo'/>
         </header>
         <Switch>
-          <Route path= "/" exact>
-            <Login />
+          <Route path= "/" exact> <Login />
+            {token ? (<Redirect to="/users"/>) : (<Redirect to="/"/>)}
           </Route>
-          <Route path= "/users">
-            <Users />
+          <Route path= "/users"> <Users />
+            {token ? (<Redirect to="/users"/>) : (<Redirect to="/"/>)}
           </Route>
-          <Route path= "/products">
-            <Products />
+          <Route path= "/products"> <Products />
+            {token ? (<Redirect to="/products"/>) : (<Redirect to="/"/>)}
           </Route>
-          <Route path= "/orders">
-            <Orders />
+          <Route path= "/orders"> <Orders />
+            {token ? (<Redirect to="/orders"/>) : (<Redirect to="/"/>)}  
           </Route>
-          <Route path= "/status">
-            <StatusOfOrder />
+          <Route path= "/status"><StatusOfOrder />
+            {token ? (<Redirect to="/status"/>) : (<Redirect to="/"/>)}
           </Route>
-          <Route path= "/profile">
-            <Profile />
+          <Route path= "/profile"> <Profile />
+            {token ? (<Redirect to="/profile"/>) : (<Redirect to="/"/>)}
           </Route>
         </Switch>
       </div> 
