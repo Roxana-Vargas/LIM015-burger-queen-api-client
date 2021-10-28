@@ -71,6 +71,14 @@ const StatusOfOrder = () => {
         })
     }
 
+    /*click*/
+
+    /*const [show, setShow] = useState(true);*/
+
+    const click = (i) => {
+        console.log(`soy${i}`);
+    }
+
     return (
         <><Navigation />
         <div className='containerStatusOrders'>
@@ -141,7 +149,7 @@ const StatusOfOrder = () => {
                                     })}
                                 </tbody>
                             </table>
-                            <button className='btn-delete hideOrder'><FontAwesomeIcon icon={faTrash} /></button>
+                            <button onClick={() => click(i)} className='btn-delete hideOrder'><FontAwesomeIcon icon={faTrash} /></button>
                         </div>
                     );
                 })}

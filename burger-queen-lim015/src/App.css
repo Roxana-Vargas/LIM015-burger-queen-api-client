@@ -673,7 +673,7 @@ input[type=number] { -moz-appearance:textfield; }
 
 .cardOrders {
   background-color: white;
-  width: 21.5%;
+  width: 21%;
   height: 350px;
   margin-left: 21px;
   margin-right: 29px;

@@ -27,23 +27,29 @@ function App() {
           <img src={logo} className='logo' alt='logo'/>
         </header>
         <Switch>
-          <Route path= "/" exact> <Login />
+          <Route path= "/" exact> 
             {token ? (<Redirect to="/users"/>) : (<Redirect to="/"/>)}
+            <Login />
           </Route>
-          <Route path= "/users"> <Users />
+          <Route path= "/users"> 
             {token ? (<Redirect to="/users"/>) : (<Redirect to="/"/>)}
+            <Users />
           </Route>
-          <Route path= "/products"> <Products />
+          <Route path= "/products"> 
             {token ? (<Redirect to="/products"/>) : (<Redirect to="/"/>)}
+            <Products />
           </Route>
-          <Route path= "/orders"> <Orders />
+          <Route path= "/orders"> 
             {token ? (<Redirect to="/orders"/>) : (<Redirect to="/"/>)}  
+            <Orders />
           </Route>
-          <Route path= "/status"><StatusOfOrder />
+          <Route path= "/status">
             {token ? (<Redirect to="/status"/>) : (<Redirect to="/"/>)}
+            <StatusOfOrder />
           </Route>
-          <Route path= "/profile"> <Profile />
+          <Route path= "/profile"> 
             {token ? (<Redirect to="/profile"/>) : (<Redirect to="/"/>)}
+            <Profile />
           </Route>
         </Switch>
       </div> 

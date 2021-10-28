@@ -283,7 +283,7 @@ const Orders = () => {
                 dataOrders.map((order, i) => {
                     return (
                         <div key={i}>
-                            <div className='cardOrders'>
+                            <div style = {order.status === 'delivering' ? {  border: 'solid #F3C13F'} : {  border: 'solid white'}} className='cardOrders'>
                                 <p className='nameClient'> {order.client} </p>
                                 <table className='tableOrder'>
                                     <tbody>
