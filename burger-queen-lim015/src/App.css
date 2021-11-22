@@ -10,16 +10,10 @@
 }
 
 /* Navigation */
-nav {
-  margin-top: 30px;
-}
-nav ul {
-  display: flex;
-  justify-content: flex-end;
-}
-nav li {
+li {
   list-style: none;
 }
+
 nav li a {
   font-size: 20px;
   font-weight: 400;
@@ -28,13 +22,12 @@ nav li a {
   text-align: left;
   color: black;
   text-decoration: none;
-  display: block; /* Convertimos los elementos a en elementos bloque para manipular el padding */
+  display: block;
   padding: 23px;
 }
 
 div p {
   font-size: 20px;
-  
 }
 
 a:hover{
@@ -107,9 +100,8 @@ a:hover{
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 400px;
   flex-direction: column;
-  margin-top: 170px;
+  margin-top: 70px;
 }
 
 .createUser {
