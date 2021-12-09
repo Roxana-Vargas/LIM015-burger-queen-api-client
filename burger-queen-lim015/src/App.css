@@ -459,8 +459,9 @@ input[type=number] { -moz-appearance:textfield; }
 .sectionOrders{
   display: flex;
   width: 90%;
-  margin: auto;
   height: 650px;
+  margin-top: 80px;
+  margin-inline: auto;
 }
 .divProducts{
   width: 50%;
@@ -707,6 +708,7 @@ input[type=number] { -moz-appearance:textfield; }
   font-size: 20px;
   padding-right: 30px;
   padding-left: 10px;
+  position: relative;
 }
 
 .btnsOrder{
@@ -798,14 +800,19 @@ input[type=number] { -moz-appearance:textfield; }
 
 /*Profile*/
 .containerProfile{
-  width: 40%;
-  margin-left: 30%;
+  width: 500px;
+  margin-inline: auto;
+  margin-top: 20px;
   height: 500px;
   border-radius: 10px;
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.divProfile{
+  margin-top: 80px;
 }
 
 .infoUser{
@@ -869,7 +876,6 @@ input[type=number] { -moz-appearance:textfield; }
 
 .myProfile{
   margin-left: 50px;
-  margin-top: 50px;
   font-size: 24px;
   font-weight: 700;
 }

@@ -9,18 +9,18 @@ const Navigation = () => {
     
   }
   return (
-  <nav class="navbar navbar-light me-3 mt-4">
-    <div class="container-fluid d-flex justify-content-end ">
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-        <span class="navbar-toggler-icon"></span>
+  <nav className="navbar navbar-light me-3 mt-4">
+    <div className="container-fluid d-flex justify-content-end ">
+      <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+        <span className="navbar-toggler-icon"></span>
       </button>
     </div>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menú</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+      <div className="offcanvas-header">
+        <h5 className="offcanvas-title" id="offcanvasExampleLabel">Menú</h5>
+      <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-      <div class="offcanvas-body">
+      <div className="offcanvas-body">
         <ul>
           <li><Link to="/users"> <FontAwesomeIcon icon={faUsers} />Users</Link></li>
           <li><Link to="/products"><FontAwesomeIcon icon={faClipboardList} /> Products</Link></li>

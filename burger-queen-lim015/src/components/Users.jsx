@@ -43,6 +43,8 @@ const Users = () => {
                 draggable: true,
                 progress: undefined,
             });
+            document.querySelector('.form-create-user').reset()
+            
         })
         .catch((error) => {
             let errorMessage = '';
@@ -207,7 +209,7 @@ const Users = () => {
         <section className='container-users'>
             <div className='createNewUser'><p>Create a new user</p></div>
             <div className='createUser'>
-                <form onSubmit={handleSubmit}>
+                <form className='form-create-user' onSubmit={handleSubmit}>
                     <input onChange={handleInputChange} type='text' placeholder='Email Adress' name='email' className='input-createUser'></input>
                     <input onChange={handleInputChange} type='password' placeholder='Password' name='password' className='input-createUser' autoComplete="on"></input>
                     <select onChange={handleInputChange} name="roles" className='select-css'>

@@ -99,7 +99,7 @@ const Profile = () => {
 
   return (
     <><Navigation />
-    <div>
+    <div className='divProfile'>
       <p className='myProfile'>My profile</p>
       <div className='containerProfile'>
         <div className='infoUser'>

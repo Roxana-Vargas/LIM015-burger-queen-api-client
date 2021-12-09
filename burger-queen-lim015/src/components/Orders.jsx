@@ -300,9 +300,9 @@ const Orders = () => {
                                 </table>
                                 <p className='status'> Status: <span className='spanStatus'>{order.status}</span>  </p>
                                 <div className='btnsOrder'>
-                                    <span className='icon-order'><FontAwesomeIcon className='btn-update ' icon={faPenSquare} /></span>
-                                    <span onClick={() => { selectOrder(order); openModalCanceled(); } } className='icon-order'><FontAwesomeIcon className='btn-delete' icon={faTrash} /></span>
-                                    <span onClick={() => { selectOrder(order); openModal(); } } className='icon-order'><FontAwesomeIcon className='btn-check' icon={faCheck} /></span>
+                                    <span className='icon-order btn-update'><FontAwesomeIcon icon={faPenSquare} /></span>
+                                    <span onClick={() => { selectOrder(order); openModalCanceled(); } } className='icon-order btn-delete'><FontAwesomeIcon icon={faTrash}/></span>
+                                    <span onClick={() => { selectOrder(order); openModal(); } } className='icon-order btn-check'><FontAwesomeIcon icon={faCheck} /></span>
                                     {isOpenModal && <ModalStatusDelivered closeModal={closeModal} handleUpdate={updateStatusToDelivered} />}
                                     {isOpenModalCanceled && <ModalStatusCanceled closeModal={closeModalCanceled} handleUpdate={updateStatusToCanceled} />}
                                     
