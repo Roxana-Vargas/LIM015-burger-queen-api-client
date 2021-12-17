@@ -469,7 +469,7 @@ input[type=number] { -moz-appearance:textfield; }
 /*card products*/
 .sectionOrders{
   display: flex;
-  width: 90%;
+  width: 94%;
   height: 650px;
   margin-top: 80px;
   margin-inline: auto;
@@ -528,17 +528,26 @@ input[type=number] { -moz-appearance:textfield; }
   font-weight: lighter;
 }
 
+.container-info-product {
+  height: 100px;
+}
+
+
 .btnAddOrder{
-  background-color: #F3C13F;
+  background: none;
+  color: #F3C13F;
   border: none;
   width: 50%;
   margin-left: 25%;
   height: 40px;
-  color: white;
   font-family: 'Raleway', sans-serif;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 28px;
   font-weight: bold;
+}
+
+.btnAddOrder:hover {
+  color: #DB3535;
 }
 
 .containerCard{
@@ -563,7 +572,7 @@ input[type=number] { -moz-appearance:textfield; }
 .imageProduct{
   width: 100px;
   height: 100px;
-  margin-left: 25%;
+  margin-inline: auto;
   margin-top: 10px;
 }
 
@@ -574,7 +583,7 @@ input[type=number] { -moz-appearance:textfield; }
   display: flex;
   justify-content: center;
   border-radius: 10px;
-  height: 700px;
+  height: 900px;
 }
 
 .tableCart{
@@ -897,6 +906,34 @@ input[type=number] { -moz-appearance:textfield; }
   height: 1000px;
   background-color: #EB5B30;
   border: none;
+}
+
+@media (max-width : 1000px) {
+  .btnCreateOrder {
+    width: 70%;
+    margin-left: 20%;
+  }
+
+  .viewAllOrders {
+    width: 60%;
+    margin-left: 30%;
+  }
+
+  .card {
+    width: 43%;
+    height: 240px;
+    border-radius: 20px;
+  }
+
+  .container-info-product {
+    margin-top: 20px;
+    height: 80px;
+  }
+
+  .imageProduct {
+    width: 70px;
+    height: 70px;
+  }
 }
 
 

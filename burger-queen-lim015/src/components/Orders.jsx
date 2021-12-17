@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 /*import CardToOrder from './CardToOrder';*/
-import { faPlus, faMinus, faAngleLeft, faPenSquare, faTrash, faCheck} from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faMinus, faAngleLeft, faPenSquare, faTrash, faCheck, faPlusCircle} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -232,9 +232,11 @@ const Orders = () => {
                                 <div className='containerImage'>
                                     <img src={product.image} alt='product' className='imageProduct' />
                                 </div>
-                                <p className='product'>Product: <span className='infoProduct'> {product.name} </span> </p>
-                                <p className='product'>Price: <span className='infoProduct'> S/.{product.price} </span> </p>
-                                <button className='btnAddOrder' onClick={() => { showProductsCart(product); orderProducts(product); calculateTotalPrice(product.price); } }>Add to order</button>
+                                <div className='container-info-product'>
+                                    <p className='product'>Product: <span className='infoProduct'> {product.name} </span> </p>
+                                    <p className='product'>Price: <span className='infoProduct'> S/.{product.price} </span> </p>
+                                </div>
+                                <button className='btnAddOrder' onClick={() => { showProductsCart(product); orderProducts(product); calculateTotalPrice(product.price); } }> <FontAwesomeIcon icon={faPlusCircle} /> </button>
                             </div>
                         </div>
                     );
@@ -261,7 +263,7 @@ const Orders = () => {
                                     <tr>
                                         <td className='tableContent'> {product.name} </td>
                                         <td className='tableContent'>  S/.{product.price} </td>
-                                        <td className='tableContent'> <button className='btnPlus'><FontAwesomeIcon icon={faPlus} /> </button> <button className='btnMinus'><FontAwesomeIcon icon={faMinus} /></button></td>
+                                        <td className='tableContent'>1</td>
                                         <td className='tableContent'> <button onClick={() => handleRemove(product._id)} className='btnX'>x</button> </td>
                                     </tr>
                                 </tbody>
