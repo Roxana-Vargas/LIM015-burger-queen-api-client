@@ -78,6 +78,7 @@ const Users = () => {
 
     /* --------------------------------------------------- GET ALL USERS ------------------------------------------------- */
     const getUsers = () => {
+        
         const url = 'https://bq-lim015.herokuapp.com/users';
         const token = localStorage.getItem('token')
         const config = {
@@ -86,6 +87,7 @@ const Users = () => {
         axios.get(url, config).then((response) => {
             setDatos(response.data)
         })
+        
     }
     useEffect(() => {
         getUsers();
@@ -108,15 +110,10 @@ const Users = () => {
         setDatosForm({
         email: user.email,
         password: user.password,
-        /*roles: user.roles*/
         })
     }
 
-    const [datosUpdate, setDatosUpdate] = useState({
-        email: '',
-        password: '',
-        roles: ''
-    })
+    const [datosUpdate, setDatosUpdate] = useState({ })
 
     const handleInputChangeUpdate = (event) => {
         setDatosUpdate({
@@ -134,7 +131,8 @@ const Users = () => {
         const config = {
             headers: { token: token }
         };
-        axios.put(url, datosUpdate, config).then((response) => {
+        axios.put(url, datosUpdate, config).then(() => {
+            setDatosUpdate({})
             closeModal();
             toast.success('User updated!', {
                 position: "bottom-center",
@@ -259,8 +257,7 @@ const Users = () => {
                         <p>Update user</p>
                         <form onSubmit={(evt) => handleSubmitUpdate(evt)}>
                             <input onChange={handleInputChangeUpdate} defaultValue={datosForm.email} type='text' placeholder='Email Adress' name='email' className='input-updateUser' autoComplete="username"></input>
-                            <input onChange={handleInputChangeUpdate} defaultValue={datosForm.password} type='password' placeholder='Password' name='password' className='input-updateUser' autoComplete="current-password"></input>
-                            <select onChange={handleInputChangeUpdate} name="roles" className='select-updateUser'>
+                            <select onClick={handleInputChangeUpdate} name="roles" className='select-updateUser'>
                                 <option value='615a8dbbe99308986396e976'>user</option>
                                 <option value='615a8dbbe99308986396e977'>admin</option>
                             </select>
