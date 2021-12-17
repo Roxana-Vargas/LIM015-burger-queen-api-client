@@ -220,7 +220,7 @@ const Products = () => {
             <div className='createNewProduct'>
                 <p>Create a new product</p>
             </div>
-            <div className='createNewProduct'>
+            <div className='containerBtnCreate'>
                 <button onClick={openModal} className='btnCreate'>Create</button>
             </div>
             <div className='containerTable'>

@@ -348,7 +348,12 @@ tr:nth-child(even) {
 
 .createNewProduct{
   margin-left: 60px;
-  margin-top: 30px;
+  margin-top: 50px;
+}
+
+.containerBtnCreate {
+  margin-left: 60px;
+  margin-top: 20px;
 }
 
 .btnCreate{
