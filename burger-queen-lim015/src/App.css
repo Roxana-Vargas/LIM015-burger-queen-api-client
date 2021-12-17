@@ -311,6 +311,11 @@ tr:nth-child(even) {
   justify-content: center;
   align-items: center;
 }
+
+.textDelete {
+  text-align: center;
+}
+
 .btns-delete{
   width: 90%;
   height: 150px;
@@ -323,13 +328,14 @@ tr:nth-child(even) {
   color: white;
   border:none;
   width: 35%;
-  height: 35%;
+  height: 40px;
   margin-left: 10%;
   margin-right: 10%;
   font-size: 20px;
   font-family: 'Raleway', sans-serif;
   cursor: pointer;
 }
+
 .btn-deleteCancel {
   margin-top: 20px;
   background-color: #DB3535;
@@ -337,7 +343,7 @@ tr:nth-child(even) {
   color: white;
   border:none;
   width: 35%;
-  height: 35%;
+  height: 40px;
   font-size: 20px;
   font-family: 'Raleway', sans-serif;
   cursor: pointer;
@@ -386,7 +392,7 @@ tr:nth-child(even) {
   background-color: white;
   position: relative;
   width:450px;
-  height: 450px;
+  height: 500px;
   padding: 10px 20px;
   border-radius: 8px;
   display: flex;

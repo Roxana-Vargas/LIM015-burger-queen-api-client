@@ -6,7 +6,7 @@ const ModalDeleteProduct = ({closeModalDelete, handleDelete}) => {
         <div className='modalDelete'>
             <div className='modalContentDelete'>
                 <img src={logo} className='logoModal' alt='logo'/>
-                <p>Are you sure you want to delete this product?</p> 
+                <p className='textDelete'>Are you sure you want to delete this product?</p> 
                 <div className='btns-delete'>
                     <button onClick={handleDelete} className='btn-deleteUser'>Delete</button>  
                     <button onClick={closeModalDelete} className='btn-deleteCancel'>Close</button>
