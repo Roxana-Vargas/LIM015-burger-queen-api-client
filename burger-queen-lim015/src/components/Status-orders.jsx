@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { faAngleRight, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faAngleRight} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ModalStatusDelivering from './ModalStatusDelivering';
 import Navigation from './Navigation';
@@ -12,10 +12,9 @@ const StatusOfOrder = () => {
 
     const [dataPendingOrders, setDataPendingOrders] = useState([]);
     const [dataDeliveringOrders, setDataDeliveringOrders] = useState([]);
-    const [dataDeliveredOrders, setDataDeliveredOrders] = useState([]);
 
     const getOrders = () => {
-        const url = 'https://bq-lim015.herokuapp.com/orders';
+        const url = 'https://bq-lim015.herokuapp.com/orders?limit=100';
         const token = localStorage.getItem('token')
         const config = {
             headers: { token: token }
@@ -25,8 +24,6 @@ const StatusOfOrder = () => {
             setDataPendingOrders(pending);
             const delivering = response.data.filter((order) => order.status ==='delivering')
             setDataDeliveringOrders(delivering);
-            const delivered = response.data.filter((order) => order.status ==='delivered')
-            setDataDeliveredOrders(delivered);
         })
     }
 
@@ -71,16 +68,11 @@ const StatusOfOrder = () => {
         })
     }
 
-    /*click*/
-
-    /*const [show, setShow] = useState(true);*/
-
-    const click = (i) => {
-        console.log(`soy${i}`);
-    }
-
     return (
         <><Navigation />
+        <div className='textOrders'>
+            <p>Status of orders</p>
+        </div>
         <div className='containerStatusOrders'>
             <div className='divOrders'>
                 <p className='txtPending'>Pending</p>
@@ -112,44 +104,22 @@ const StatusOfOrder = () => {
                 <hr />
                 {dataDeliveringOrders.map((order, i) => {
                     return (
-                        <div className='cardStatusOrder' key={i}>
+                        <div className='cardStatusOrder ' key={i}>
                             <p className='nameClient'>{order.client}</p>
-                            <table className='tableOrder'>
-                                <tbody>
-                                    {order.products.map((ele, i) => {
-                                        return (
-                                            <tr key={i}>
-                                                <td className='tableContent'>{ele.product.name}</td>
-                                                <td className='tableContent'>{ele.qty}</td>
-                                            </tr>
-                                        );
-                                    })}
-                                </tbody>
-                            </table>
-                        </div>
-                    );
-                })}
-            </div>
-            <div className='divOrders'>
-                <p className='txtDelivered'>Delivered</p>
-                <hr />
-                {dataDeliveredOrders.map((order, i) => {
-                    return (
-                        <div className='cardStatusOrder' key={i}>
-                            <p className='nameClient'>{order.client}</p>
-                            <table className='tableOrder'>
-                                <tbody>
-                                    {order.products.map((ele, i) => {
-                                        return (
-                                            <tr key={i}>
-                                                <td className='tableContent'>{ele.product.name}</td>
-                                                <td className='tableContent'>{ele.qty}</td>
-                                            </tr>
-                                        );
-                                    })}
-                                </tbody>
-                            </table>
-                            <button onClick={() => click(i)} className='btn-delete hideOrder'><FontAwesomeIcon icon={faTrash} /></button>
+                            <div>
+                                <table className='tableOrder'>
+                                    <tbody>
+                                        {order.products.map((ele, i) => {
+                                            return (
+                                                <tr key={i}>
+                                                    <td className='tableContent'>{ele.product.name}</td>
+                                                    <td className='tableContent'>{ele.qty}</td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     );
                 })}
