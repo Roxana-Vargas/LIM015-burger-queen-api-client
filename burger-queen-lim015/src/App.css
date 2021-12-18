@@ -930,6 +930,11 @@ input[type=number] { -moz-appearance:textfield; }
     height: 80px;
   }
 
+  .divBtnsOrder {
+    width: 80%;
+    margin-left: 7%;
+  }
+
   .imageProduct {
     width: 70px;
     height: 70px;

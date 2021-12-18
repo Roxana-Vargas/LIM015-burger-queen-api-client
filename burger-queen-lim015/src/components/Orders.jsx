@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 /*import CardToOrder from './CardToOrder';*/
-import { faPlus, faMinus, faAngleLeft, faPenSquare, faTrash, faCheck, faPlusCircle} from "@fortawesome/free-solid-svg-icons";
+import {faAngleLeft, faPenSquare, faTrash, faCheck, faPlusCircle} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,7 +15,7 @@ const Orders = () => {
     const [dataProducts, setDataProducts] = useState([]);
 
     const getProducts = () => {
-        const url = 'https://bq-lim015.herokuapp.com/products?limit=15';
+        const url = 'https://bq-lim015.herokuapp.com/products';
         const token = localStorage.getItem('token')
         const config = {
             headers: { token: token }
@@ -90,27 +90,22 @@ const Orders = () => {
 
     /* ---------------------------- REMOVE AN ELEMENT -------------------------------------------*/
     const handleRemove = (_id) => {
-        const newProducts = productsCart.filter((product) => product._id !== _id)
-        setProductsCart(newProducts)
+
+        const newProductsToCart = productsCart.filter((product) => product._id !== _id);
+        const newProductsToOrder = productsToOrder.filter((product) => product.product !== _id)
+        const removedProduct = productsCart.filter((product) => product._id === _id);
+
+        setProductsCart(newProductsToCart);
+        setProductsToOrder(newProductsToOrder)
+        setTotal(total - removedProduct[0].price)
+    
     }
 
     /* ---------------------------- CREATE AND ORDER -------------------------------------------*/
     
     const handleCreateOrder = () => {
-        const url = 'https://bq-lim015.herokuapp.com/orders';
-        const token = localStorage.getItem('token')
-        const config = {
-            headers: { token: token }
-        };
-        const order = {
-            userId: localStorage.getItem('userId'),
-            client: client.client,
-            status: 'pending',
-            products: productsToOrder
-          };
-        axios.post(url, order, config).then((response) => {
-            getOrders();
-            toast.success('The order was created!', {
+        if (client === '') {
+            toast.error("You must enter the client's name", {
                 position: "bottom-center",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -119,10 +114,49 @@ const Orders = () => {
                 draggable: true,
                 progress: undefined,
             });
-        })
-        .catch((error) => {
-            console.info(error);
-        } )
+        } else if (productsToOrder.length === 0) {
+            toast.error("You must enter products to order", {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        } else {
+            const url = 'https://bq-lim015.herokuapp.com/orders';
+            const token = localStorage.getItem('token')
+            const config = {
+                headers: { token: token }
+            };
+            const order = {
+                userId: localStorage.getItem('userId'),
+                client: client.client,
+                status: 'pending',
+                products: productsToOrder
+            };
+            axios.post(url, order, config).then(() => {
+                document.querySelector('.inputClient').value = '';
+                setProductsToOrder([]);
+                setProductsCart([]);
+                setTotal(0)
+                setShow(false)
+                getOrders();
+                toast.success('The order was created!', {
+                    position: "bottom-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            })
+            .catch((error) => {
+                console.info(error);
+            })
+        }   
     }
 
     /* ---------------------------- SHOW AND HIDE  -------------------------------------------*/
@@ -134,7 +168,7 @@ const Orders = () => {
     const [dataOrders, setDataOrders] = useState([]);
 
     const getOrders = () => {
-        const url = 'https://bq-lim015.herokuapp.com/orders';
+        const url = 'https://bq-lim015.herokuapp.com/orders?limit=100';
         const token = localStorage.getItem('token')
         const config = {
             headers: { token: token }
