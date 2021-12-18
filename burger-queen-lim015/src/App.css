@@ -354,7 +354,7 @@ tr:nth-child(even) {
 
 .createNewProduct{
   margin-left: 60px;
-  margin-top: 50px;
+  margin-top: 60px;
 }
 
 .containerBtnCreate {
@@ -583,7 +583,7 @@ input[type=number] { -moz-appearance:textfield; }
   display: flex;
   justify-content: center;
   border-radius: 10px;
-  height: 900px;
+  height: 80vh;
 }
 
 .tableCart{
@@ -824,10 +824,10 @@ input[type=number] { -moz-appearance:textfield; }
 
 /*Profile*/
 .containerProfile{
-  width: 500px;
+  width: 450px;
   margin-inline: auto;
   margin-top: 20px;
-  height: 500px;
+  height: 450px;
   border-radius: 10px;
   background-color: white;
   display: flex;
@@ -964,6 +964,14 @@ input[type=number] { -moz-appearance:textfield; }
   .btnBack {
     width: 20%;
     margin-left: 20px;
+  }
+
+  .containerProfile {
+    margin-top: 70px;
+  }
+
+  .welcome {
+    margin-top: 270px;
   }
 }
 

@@ -105,7 +105,7 @@ const Profile = () => {
         <div className='infoUser'>
           <form>
             <p className='infoProfile'> Email: <span><input onChange={handleInputChange} defaultValue={dataUser.email} className='inputProfile' readOnly={isReadonly} type='text' name='email' autoComplete="username"></input></span></p>
-            <p className='infoProfile'>Password: <span><input onChange={handleInputChange} defaultValue={dataUser.password} className='inputProfile' readOnly={isReadonly} type='password' name='password' autoComplete="current-password"></input></span></p>
+            <p className='infoProfile'>Password: <span><input onChange={handleInputChange} className='inputProfile' readOnly={isReadonly} type='password' name='password' autoComplete="current-password"></input></span></p>
             <p className='infoProfile'>Roles: <span><input value={dataUser.roles[0] === '615a8dbbe99308986396e976' ? 'user' : 'admin'} className='inputProfile' readOnly type="text" /></span></p>
           </form>
           <div className='btnsUpdateUser'>
