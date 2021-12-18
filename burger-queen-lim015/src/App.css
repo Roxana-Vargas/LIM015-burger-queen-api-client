@@ -1,38 +1,977 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300&display=swap');
+
+/*.App {
   text-align: center;
-}
+}*/
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Navigation */
+li {
+  list-style: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+nav li a {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 35px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: black;
+  text-decoration: none;
+  display: block;
+  padding: 23px;
+}
+
+div p {
+  font-size: 20px;
+}
+
+a:hover{
+  border-bottom: 3px solid  #F3C13F;
+}
+
+/* Logo */
+.logo {
+  position: absolute;
+  width: 200px;
+  height: 140px;
+  left: 40px;
+  top: 10px;
+}
+
+/* login */
+.container-welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.welcome {
+  margin-top: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 500px;
+  background: #FEFDFF;
+  height: 450px;
+  width: 500px;
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+}
+
+.welcome p {
+  margin-bottom: 60px;
+  font-size: 30px;
+  line-height: 59px;
+}
+
+.input-login {
+  border: none;
+  border-bottom:1px solid black;
+  width: 100%;
+  margin-bottom:60px;
+  outline: none;
+}
+.input-login::placeholder {
+  font-family: 'Raleway', sans-serif;
+  font-size: 15px;
+}
+.btn-login {
+  background-color: #F3C13F;
+  border-radius: 10px;
   color: white;
+  border:none;
+  width: 50%;
+  height: 35%;
+  margin-left: 25%;
+  margin-right: 25%;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+/* form create user */
+
+.container-users {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 70px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.createUser {
+  background-color: #F3F0F0;
+  width: 350px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px;
+  border-radius: 10px;
+  
+}
+.input-createUser {
+  width: 100%;
+  border: none;
+  margin-top:15px;
+  outline: #F3C13F;
+  border-radius: 3px;
+  height: 40px;
+}
+.btn-createUser {
+  margin-top: 40px;
+  background-color: #F3C13F;
+  border-radius: 10px;
+  color: white;
+  border:none;
+  width: 50%;
+  height: 20%;
+  margin-left: 25%;
+  margin-right: 25%;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+}
+
+.createNewUser{
+  align-self: flex-start;
+  margin-left: 47px;
+}
+
+.input-createUser::placeholder {
+  font-family: 'Raleway', sans-serif;
+  font-size: 15px;
+}
+
+.select-css {
+  width: 100%;
+  border: none;
+  margin-top:15px;
+  outline: #F3C13F;
+  border-radius: 3px;
+  height: 40px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 15px;
+}
+
+/*table*/
+.containerTable {
+  margin-top: 20px;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  margin-left: 5%;
+  margin-right: 5%;
+  
+}
+table {
+  font-family: 'Raleway', sans-serif;
+  background-color: #F3F0F0;
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 100px;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+/*botones con icono*/
+.btn-update{
+  border: none;
+  cursor: pointer;
+  color: #F3C13F;
+  background-color: transparent;
+  font-size: 20px;
+  padding-right: 10px;
+}
+
+.btn-delete{
+  border: none;
+  cursor: pointer;
+  color: #DB3535;
+  background-color: transparent;
+  font-size: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+/*modal update*/
+
+.modal {
+  background-color: rgba(0,0,0,.6);
+  position: fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContenido {
+  background-color: white;
+  position: relative;
+  width:450px;
+  height: 450px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoModal {
+  width: 100px;
+}
+
+.input-updateUser{
+  border: none;
+  border-bottom:1px solid black;
+  width: 80%;
+  margin-left:10%;
+  margin-bottom:30px;
+  outline: none;
+}
+.select-updateUser {
+  border: none;
+  width: 80%;
+  margin-left:10%;
+  margin-bottom:30px;
+  outline: none;
+  background-color: #eeece3;
+  border-radius: 5px;
+  padding: 10px;
+  font-family: 'Raleway', sans-serif;
+}
+.btn-updateUser {
+  margin-top: 20px;
+  background-color: #F3C13F;
+  border-radius: 8px;
+  color: white;
+  border:none;
+  width: 35%;
+  height: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+}
+.btn-updateCancel {
+  margin-top: 20px;
+  background-color: #DB3535;
+  border-radius: 8px;
+  color: white;
+  border:none;
+  width: 35%;
+  height: 20%;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+}
+
+/*modal delete*/
+
+.modalDelete {
+  background-color: rgba(0,0,0,.6);
+  position: fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContentDelete {
+  background-color: white;
+  position: relative;
+  width:450px;
+  height: 250px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.textDelete {
+  text-align: center;
+}
+
+.btns-delete{
+  width: 90%;
+  height: 150px;
+}
+
+.btn-deleteUser{
+  margin-top: 20px;
+  background-color: #F3C13F;
+  border-radius: 8px;
+  color: white;
+  border:none;
+  width: 35%;
+  height: 40px;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+}
+
+.btn-deleteCancel {
+  margin-top: 20px;
+  background-color: #DB3535;
+  border-radius: 8px;
+  color: white;
+  border:none;
+  width: 35%;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+}
+
+
+/*create product*/
+
+.createNewProduct{
+  margin-left: 60px;
+  margin-top: 60px;
+}
+
+.containerBtnCreate {
+  margin-left: 60px;
+  margin-top: 20px;
+}
+
+.btnCreate{
+  background-color: #F3C13F;
+  border-radius: 7px;
+  color: white;
+  border:none;
+  width: 150px;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+}
+
+/*modal create product*/
+
+.modalCreateProduct{
+  background-color: rgba(0,0,0,.6);
+  position: fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContentProduct{
+  background-color: white;
+  position: relative;
+  width:450px;
+  height: 500px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputCreateProduct{
+  border: none;
+  border-bottom:1px solid black;
+  width: 80%;
+  margin-left:10%;
+  margin-bottom:30px;
+  outline: none;
+  font-family: 'Raleway', sans-serif;
+}
+.selectCreateProduct {
+  border: none;
+  width: 80%;
+  margin-left:10%;
+  margin-bottom:30px;
+  outline: none;
+  background-color: #eeece3;
+  border-radius: 5px;
+  padding: 10px;
+  font-family: 'Raleway', sans-serif;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }
+
+.inputFile{
+  margin-left: 45px;
+  margin-bottom: 20px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.btnCreateProduct{
+  margin-top: 5px;
+  margin-bottom: 10px;
+  background-color: #F3C13F;
+  border-radius: 8px;
+  color: white;
+  border:none;
+  width: 35%;
+  height: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+}
+
+.btnCreateCancel{
+  margin-top: 5px;
+  background-color: #DB3535;
+  border-radius: 8px;
+  color: white;
+  border:none;
+  width: 35%;
+  height: 20%;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/*card products*/
+.sectionOrders{
+  display: flex;
+  width: 94%;
+  height: 650px;
+  margin-top: 80px;
+  margin-inline: auto;
+}
+.divProducts{
+  width: 50%;
+  height: 1200px;
+}
+
+.divBtnsOrder{
+  margin-top: 0px;
+  display: flex;
+  justify-content: center;
+}
+.showBreakfasts{
+  width: 180px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: #F3C13F;
+  font-family: 'Raleway', sans-serif;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.showLunches{
+  width: 180px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: #EB5B30;
+  font-family: 'Raleway', sans-serif;
+  color: white;
+  font-size: 18px;
+  font-weight: bold; 
+}
+
+
+.nameClient{
+  font-weight: bold;
+  font-size: 18px;
+  margin-left: 20px;
+  padding-top: 15px;
+}
+
+.product{
+  margin-left: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.infoProduct{
+  font-weight: lighter;
+}
+
+.container-info-product {
+  height: 100px;
+}
+
+
+.btnAddOrder{
+  background: none;
+  color: #F3C13F;
+  border: none;
+  width: 50%;
+  margin-left: 25%;
+  height: 40px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.btnAddOrder:hover {
+  color: #DB3535;
+}
+
+.containerCard{
+  background-color: violet;
+  width: 100%;
+}
+.containerImage{
+  width: 100%;
+  display: flex;
+}
+.card{
+  margin-top: 5%;
+  background-color: white;
+  width: 25%;
+  height: 270px;
+  margin-right: 7%;
+  border-radius: 5px;
+  float: left;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+}
+
+.imageProduct{
+  width: 100px;
+  height: 100px;
+  margin-inline: auto;
+  margin-top: 10px;
+}
+
+/* card to order */
+.divOrderCart{
+  background-color: white;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  height: 80vh;
+}
+
+.tableCart{
+  width: 90%;
+}
+
+.titleCreateOrder{
+  font-weight: bold;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 40px;
+  margin-left: 70px;
+}
+
+.inputClient{
+  border: none;
+  border-bottom:1px solid black;
+  width: 100%;
+  margin-bottom:20px;
+  margin-left: 30px;
+  outline: none;
+}
+
+.inputClient::placeholder {
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+}
+
+.tableContent{
+  background-color: white;
+  border:"0";
+}
+
+.tableContent{border: none;}
+
+.btnPlus{
+  background-color: rgb(236, 233, 231);
+  font-size: 14px;
+  border-radius: 2px;
+  margin-right: 10px;
+  padding: 5px;
+  border: none;
+}
+
+.btnMinus{
+  background-color: rgb(236, 233, 231);
+  font-size: 14px;
+  border-radius: 2px;
+  padding: 5px;
+  margin-left: 10px;
+  border: none;
+}
+
+.btnX{
+  background-color: white;
+  font-size: 22px;
+  padding: 5px;
+  margin-left: 10px;
+  border: none;
+  color: #DB3535;
+}
+
+.btnCreateOrder{
+  background-color: #F3C13F;
+  border-radius: 7px;
+  color: white;
+  border:none;
+  width: 40%;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-left: 30%;
+}
+
+.totalPriceCart{
+  margin-left: 30px;
+  font-weight: bold;
+}
+
+/*orders card */
+.viewAllOrders{
+  background-color: #EB5B30;
+  border-radius: 7px;
+  color: white;
+  border:none;
+  width: 40%;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  margin-top: 70px;
+  margin-left: 50%;
+}
+
+.containerOrders {
+  width: 100%;
+}
+
+.cardOrders {
+  background-color: white;
+  width: 21%;
+  height: 350px;
+  margin-left: 21px;
+  margin-right: 29px;
+  margin-bottom: 50px;
+  float: left;
+  border-radius: 10px;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+}
+
+.btnBack{
+  background-color: #F3C13F;
+  border-radius: 7px;
+  color: white;
+  border:none;
+  width: 10%;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.status{
+  margin-left: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.spanStatus {
+  font-weight: lighter;
+}
+
+.btn-check{
+  border: none;
+  cursor: pointer;
+  color: #36c260;
+  background-color: transparent;
+  font-size: 20px;
+  position: relative;
+  padding-right: 10px;
+}
+
+.btnsOrder{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 60px;
+}
+
+.modalUpdateStatus{
+  background-color: rgba(0,0,0,.4);
+  position: fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.txtUpdateStatus{
+  text-align: center;
+}
+
+/* status orders */
+
+.containerStatusOrders{
+  width: 90%;
+  display: flex;
+  margin-inline: auto;
+  justify-content: space-around;
+}
+
+.divOrders{
+  background-color: #F9F3F3;
+  width: 47%;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+.textOrders {
+  margin-top: 70px;
+  margin-left: 50px;
+}
+
+.txtPending{
+  font-weight: bold;
+  text-align: center;
+  color: #EB5B30;
+}
+
+.txtDelivering{
+  font-weight: bold;
+  text-align: center;
+  color:#F3C13F;
+}
+
+.txtDelivered{
+  font-weight: bold;
+  text-align: center;
+  color: #36c260;
+}
+
+.cardStatusOrder{
+  background-color: white;
+  width: 90%;
+  margin-left: 5%;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+}
+
+.btnMove{
+  background-color: #F3C13F;
+  border-radius: 7px;
+  color: white;
+  border:none;
+  width: 40%;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin-left: 30%;
+}
+
+.tableOrder{
+  margin-bottom: 40px;
+}
+
+.hideOrder{
+  margin-top: 35px;
+  margin-left: 80%;
+}
+
+/*Profile*/
+.containerProfile{
+  width: 450px;
+  margin-inline: auto;
+  margin-top: 20px;
+  height: 450px;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.divProfile{
+  margin-top: 80px;
+}
+
+.infoUser{
+  width: 80%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.infoProfile{
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.inputProfile{
+  border: none;
+  border-bottom:1px solid rgb(177, 172, 172);
+  width: 100%;
+  outline: none;
+  margin-top: 30px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
+}
+
+.inputProfile:read-write{
+  border-color:#F3C13F;
+}
+
+.btnEditUser{
+  width: 45%;
+  margin-left: 5%;
+  border: none;
+  background-color: #F3C13F;
+  border-radius: 3px;
+  height: 40px;
+  margin-top: 20px;
+  color: white;
+  font-size: 18px;
+  font-weight: 18px;
+  cursor: pointer;
+}
+
+.btnSaveChanges{
+  width: 45%;
+  margin-right: 5%;
+  border: none;
+  background-color: #36c260;
+  border-radius: 3px;
+  height: 40px;
+  margin-top: 20px;
+  color: white;
+  font-size: 18px;
+  font-weight: 18px;
+  cursor: pointer; 
+}
+.btnsUpdateUser{
+  display: flex;
+  justify-content: right;
+}
+
+.myProfile{
+  margin-left: 50px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.line{
+  margin-right: 65px;
+  width: 1px;
+  height: 1000px;
+  background-color: #EB5B30;
+  border: none;
+}
+
+.containerTableOrder {
+  height: 155px;
+}
+
+@media (max-width : 1000px) {
+  .btnCreateOrder {
+    width: 70%;
+    margin-left: 20%;
   }
-  to {
-    transform: rotate(360deg);
+
+  .viewAllOrders {
+    width: 60%;
+    margin-left: 30%;
+  }
+
+  .card {
+    width: 43%;
+    height: 240px;
+    border-radius: 20px;
+  }
+
+  .container-info-product {
+    margin-top: 20px;
+    height: 80px;
+  }
+
+  .divBtnsOrder {
+    width: 80%;
+    margin-left: 7%;
+  }
+
+  .imageProduct {
+    width: 70px;
+    height: 70px;
+  }
+
+  .cardOrders {
+    width: 25%;
   }
 }
+
+@media (max-width : 768px) {
+  .cardOrders {
+    width: 38%;
+  }
+  .containerCardsOrders {
+    width: 100%;
+    margin-left: 35px;
+  }
+  .btnBack {
+    width: 20%;
+    margin-left: 20px;
+  }
+
+  .containerProfile {
+    margin-top: 70px;
+  }
+
+  .welcome {
+    margin-top: 270px;
+  }
+}
+
