@@ -726,9 +726,8 @@ input[type=number] { -moz-appearance:textfield; }
   color: #36c260;
   background-color: transparent;
   font-size: 20px;
-  padding-right: 30px;
-  padding-left: 10px;
   position: relative;
+  padding-right: 10px;
 }
 
 .btnsOrder{
@@ -908,6 +907,10 @@ input[type=number] { -moz-appearance:textfield; }
   border: none;
 }
 
+.containerTableOrder {
+  height: 155px;
+}
+
 @media (max-width : 1000px) {
   .btnCreateOrder {
     width: 70%;
@@ -939,6 +942,23 @@ input[type=number] { -moz-appearance:textfield; }
     width: 70px;
     height: 70px;
   }
+
+  .cardOrders {
+    width: 25%;
+  }
 }
 
+@media (max-width : 768px) {
+  .cardOrders {
+    width: 38%;
+  }
+  .containerCardsOrders {
+    width: 100%;
+    margin-left: 35px;
+  }
+  .btnBack {
+    width: 20%;
+    margin-left: 20px;
+  }
+}
 

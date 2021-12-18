@@ -26,7 +26,7 @@ const Products = () => {
     const [dataProducts, setDataProducts] = useState([]);
 
     const getProducts = () => {
-        const url = 'https://bq-lim015.herokuapp.com/products?limit=15';
+        const url = 'https://bq-lim015.herokuapp.com/products?limit=20';
         const token = localStorage.getItem('token')
         const config = {
             headers: { token: token }

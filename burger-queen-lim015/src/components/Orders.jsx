@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 /*import CardToOrder from './CardToOrder';*/
-import {faAngleLeft, faPenSquare, faTrash, faCheck, faPlusCircle} from "@fortawesome/free-solid-svg-icons";
+import {faAngleLeft, faTrash, faCheck, faPlusCircle} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,7 +15,7 @@ const Orders = () => {
     const [dataProducts, setDataProducts] = useState([]);
 
     const getProducts = () => {
-        const url = 'https://bq-lim015.herokuapp.com/products';
+        const url = 'https://bq-lim015.herokuapp.com/products?limit=20';
         const token = localStorage.getItem('token')
         const config = {
             headers: { token: token }
@@ -200,6 +200,7 @@ const Orders = () => {
 
     const selectOrder = (order) => {
         setIdOrder(order._id);
+        console.log('click');
     }
 
     const updateStatusToDelivered = () => {
@@ -318,27 +319,29 @@ const Orders = () => {
                 {
                 dataOrders.map((order, i) => {
                     return (
-                        <div key={i}>
+                        <div className='containerCardsOrders' key={i}>
                             <div style = {order.status === 'delivering' ? {  border: 'solid #F3C13F'} : {  border: 'solid white'}} className='cardOrders'>
                                 <p className='nameClient'> {order.client} </p>
-                                <table className='tableOrder'>
-                                    <tbody>
-                                        {order.products.map((ele, i) => {
-                                            return (
-                                                <tr key={i}>
-                                                    <td className='tableContent'>{ele.product.name}</td>
-                                                    <td className='tableContent'>{ele.qty}</td>
-                                                    <td className='tableContent'>S/{ele.product.price}</td>
-                                                </tr>
-                                            );
-                                        })}
-                                    </tbody>
-                                </table>
+                                <div className='containerTableOrder'>
+                                    <table className='tableOrder'>
+                                        <tbody>
+                                            {order.products.map((ele, i) => {
+                                                return (
+                                                    <tr key={i}>
+                                                        <td className='tableContent'>{ele.product.name}</td>
+                                                        <td className='tableContent'>{ele.qty}</td>
+                                                        <td className='tableContent'>S/{ele.product.price}</td>
+                                                    </tr>
+                                                );
+                                            })}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
                                 <p className='status'> Status: <span className='spanStatus'>{order.status}</span>  </p>
                                 <div className='btnsOrder'>
-                                    <span className='icon-order btn-update'><FontAwesomeIcon icon={faPenSquare} /></span>
-                                    <span onClick={() => { selectOrder(order); openModalCanceled(); } } className='icon-order btn-delete'><FontAwesomeIcon icon={faTrash}/></span>
-                                    <span onClick={() => { selectOrder(order); openModal(); } } className='icon-order btn-check'><FontAwesomeIcon icon={faCheck} /></span>
+                                    <button className='btn' onClick={() => { selectOrder(order); openModalCanceled(); } } ><span className='icon-order btn-delete'><FontAwesomeIcon icon={faTrash}/></span></button>
+                                    <button className='btn' onClick={() => { selectOrder(order); openModal(); } }><span className='icon-order btn-check'><FontAwesomeIcon icon={faCheck} /></span></button>
                                     {isOpenModal && <ModalStatusDelivered closeModal={closeModal} handleUpdate={updateStatusToDelivered} />}
                                     {isOpenModalCanceled && <ModalStatusCanceled closeModal={closeModalCanceled} handleUpdate={updateStatusToCanceled} />}
                                     
